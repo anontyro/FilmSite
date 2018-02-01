@@ -1,7 +1,9 @@
 // package imports
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
+const app = express();
 
 // my imports
 const homeRoutes = require('./routes/home.routes')
@@ -15,11 +17,14 @@ app.use((req, res, next) =>{
     next();
 })
 
-// Parse URL encoded data
+// Parse URL encoded data application/www
 app.use(bodyParser.urlencoded({extended: false}));
 
 // Parse JSON data
 app.use(bodyParser.json());
+
+// for parsing multipart/form-data
+app.use(upload.array());
 
 // enable loading of static files
 app.use(express.static(__dirname + '/public'));

@@ -6,7 +6,7 @@ var router = express.Router();
  */
 router.get('/', (req, res) =>{
     res.render('content', {
-        name: "My site",
+        title: "My site",
         url: "https://github.com"
     });
 });
@@ -16,6 +16,17 @@ router.get('/', (req, res) =>{
  */
 router.get('/:id([0-9]{5})', (req, res)  =>{
     res.send('Your Id:' + req.params.id);
+});
+
+router.get('/register', (req, res) => {
+    res.render('./auth/register',{
+        title: "Register new user"
+    })
+});
+
+router.post('/register', (req, res) =>{
+    console.log(req.body);
+    res.send('Your request has been sent successfully');
 });
 
 /**

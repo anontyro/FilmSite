@@ -1,0 +1,21 @@
+html
+    head
+        include ../header.pug
+    body
+        h3 Register here
+        form(action = "/register", method = "POST")
+            div.form-style
+                label(for = "firstname") First Name:
+                input(name = "firstname" placeholder="firstname")
+                br
+                label(for = "lastname") Last Name:
+                input(name = "lastname" placeholder="lastname")
+                br
+                label(for = "email") Email Address:
+                input(name = "email" type="email" placeholder="my@home.com")
+                br
+                label(for = "password") password:
+                input(name = "password" type="password")
+                br
+                button(type = "submit") Register
+        include ../footer.pug
