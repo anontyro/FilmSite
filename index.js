@@ -3,7 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer();
+const mongoose = require('mongoose');
 const app = express();
+
+const conn = require('./config/env').mongoConnect;
+// connect to mongo db
+mongoose.connect(conn);
 
 // my imports
 const homeRoutes = require('./routes/home.routes')

@@ -1,5 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
+
+// user model
+const User = require('../models/personSchema').Person;
 
 /**
  * Home Route
@@ -25,8 +29,46 @@ router.get('/register', (req, res) => {
 });
 
 router.post('/register', (req, res) =>{
-    console.log(req.body);
-    res.send('Your request has been sent successfully');
+    const userInfo = req.body;
+    console.log(userInfo);
+    if(!userInfo.firstname || !userInfo.lastname || !userInfo.email || !userInfo.password ) {
+        res.send('Sorry not all information was filled out correctly');
+    }else {
+        const newUser = new User({
+            firstname: userInfo.firstname,
+            lastname: userInfo.lastname,
+            email: userInfo.email,
+            password: userInfo.password
+        });
+
+        newUser.save( (err, User) => {
+            if(err){
+                res.send('An error occured whilst connecting to the database');
+            }else{
+                console.log(newUser);
+                res.send('New User added!');
+                
+            }
+        });
+    }
+    // res.send('Your request has been sent successfully');
+});
+
+router.get('/user', (req, res) =>{
+    User.find( (err, response) =>{
+        console.log(response);
+        res.json(response);
+    });
+});
+
+router.get('/login/:email/:password', (req, res) =>{
+    User.findOne({email: req.params.email, password: req.params.password}, "firstname", (err, response) =>{
+        if(response === null) {
+            res.send('failed to login');
+        }else{
+            res.send(response.firstname + ' Logged in correctly');
+        }
+    });
 });
 
 /**
