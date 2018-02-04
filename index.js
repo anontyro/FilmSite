@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer();
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
 
@@ -40,6 +41,8 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+// cookie setup
+app.use(cookieParser());
 // Session setup
 app.use(session({secret: "2134fg345564dsrytgfasdaseqw23"}));
 

@@ -1,5 +1,3 @@
-import { Error } from 'mongoose';
-
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -11,7 +9,7 @@ const User = require('../models/personSchema').Person;
 /**
  * Security method checks session exists if it doesn't show error
  */
-const checkSignIn = (req, res) => {
+const checkSignIn = (req, res, next) => {
     if(req.session.user){
         next();
     } else {
@@ -102,20 +100,30 @@ router.get('/login', (req, res) =>{
  * if validated will get a new session
  */
 router.post('/login', (req,res) =>{
+    console.log(req.body);
     if(!req.body.email || !req.body.password){
         res.status('400');
         res.send('Invalid login details');
     } else {
-        User.findOne({email: req.params.email, password: req.params.password}, (err, response) =>{
+        User.findOne({email: req.body.email, password: req.body.password}, (err, response) =>{
             if(response === null){
                 res.status('401');
                 res.send('Error incorrect login details');
             } else {
+                console.log(response);
                 req.session.user = response.email;
+                console.log(req.session);
                 res.redirect('/user_area');
             }
         });
     }
+});
+
+router.get('/logout', (req,res) =>{
+    req.session.destroy(()=>{
+        console.log('logged out');
+    });
+    res.redirect('/login');
 });
 
 /**
@@ -123,7 +131,7 @@ router.post('/login', (req,res) =>{
  * a page that requires the user to login first and have an active session to contiune
  */
 router.get('/user_area', checkSignIn, (req, res) =>{
-    res.send(res.session.user + ' Has signed in correctly');
+    res.send(req.session.user + ' Has signed in correctly');
 });
 
 /**
