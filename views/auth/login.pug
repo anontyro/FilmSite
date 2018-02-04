@@ -1,0 +1,16 @@
+html
+    head
+        include ../header.pug
+    body
+        div.login-head
+            h3 Login
+        form(action = "/login", method = "POST")
+            div.form-style
+                label(for = "email") Email Address:
+                input(name = "email" type="email" placeholder="my@home.com")
+                br
+                label(for = "password") password:
+                input(name = "password" type="password")
+                br
+                button(type = "submit") Login
+        include ../footer.pug

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const upload = multer();
 const mongoose = require('mongoose');
+const session = require('express-session');
 const app = express();
 
 const conn = require('./config/env').mongoConnect;
@@ -13,6 +14,7 @@ mongoose.connect(conn);
 // my imports
 const homeRoutes = require('./routes/home.routes')
 
+// MIDDLEWARE ----------------------------------------------------------
 /**
  * Basic Logging middleware
  * Middleware requires the next() callback
@@ -37,6 +39,12 @@ app.use(express.static(__dirname + '/public'));
 // Set Pug as the view engine to render the page
 app.set('view engine', 'pug');
 app.set('views', './views');
+
+// Session setup
+app.use(session({secret: "2134fg345564dsrytgfasdaseqw23"}));
+
+
+// ROUTES ----------------------------------------
 
 //Home Router
 app.use('/',homeRoutes);
