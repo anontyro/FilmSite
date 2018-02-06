@@ -8,7 +8,8 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
 
-const conn = require('./config/env').mongoConnect;
+const conn = require('./config/env').MongoConnect;
+const sess = require('./config/env').SessionSecret;
 // connect to mongo db
 mongoose.connect(conn);
 
@@ -16,6 +17,10 @@ mongoose.connect(conn);
 const homeRoutes = require('./routes/home.routes')
 
 // MIDDLEWARE ----------------------------------------------------------
+
+// Set Pug as the view engine to render the page
+app.set('view engine', 'pug');
+app.set('views', './views');
 /**
  * Basic Logging middleware
  * Middleware requires the next() callback
@@ -37,18 +42,13 @@ app.use(upload.array());
 // enable loading of static files
 app.use(express.static(__dirname + '/public'));
 
-// Set Pug as the view engine to render the page
-app.set('view engine', 'pug');
-app.set('views', './views');
-
 // cookie setup
 app.use(cookieParser());
 // Session setup
-app.use(session({secret: "2134fg345564dsrytgfasdaseqw23"}));
+app.use(session({secret: sess}));
 
 
 // ROUTES ----------------------------------------
-
 //Home Router
 app.use('/',homeRoutes);
 

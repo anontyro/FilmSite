@@ -22,9 +22,10 @@ const checkSignIn = (req, res, next) => {
  * Home Route
  */
 router.get('/', (req, res) =>{
-    res.render('content', {
-        title: "My site",
-        url: "https://github.com"
+    res.render('./home/index', {
+        title: "5 Minute Media",
+        url: "https://github.com",
+        css: "/css/home/index.css"
     });
 });
 
