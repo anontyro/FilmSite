@@ -17,15 +17,26 @@ const checkSignIn = (req, res, next) => {
         next(err);
     }
 };
+/**
+ * Route Middleware to pick up if the user has signed in
+ * if so store user data in global
+ */
+router.get('*', (req, res, next) =>{
+    res.locals.user = req.session.user || null;
+    console.log(res.locals.user);
+    next();
+});
 
 /**
  * Home Route
  */
 router.get('/', (req, res) =>{
+
     res.render('./home/index', {
         title: "5 Minute Media",
         url: "https://github.com",
-        css: "/css/home/index.css"
+        css: "/css/home/index.css",
+
     });
 });
 
@@ -92,6 +103,9 @@ router.get('/user', (req, res) =>{
  * sends the login page for the user to login and request a new session
  */
 router.get('/login', (req, res) =>{
+    if(req.session.user){
+        res.redirect('/logout');
+    }
     res.render('./auth/login');
 });
 

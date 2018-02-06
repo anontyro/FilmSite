@@ -2,12 +2,33 @@
 html(lang="en")
     head
         title=title
-        link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap-grid.css', rel='stylesheet')
+        link(href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css', rel='stylesheet')
         link(href='/css/home/main.css', rel='stylesheet')
         link(href=css, rel='stylesheet')
     body
-        div.main-body
-            block body
+        div.main-container
+            nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+                .navbar-brand(href="/") 5 Minute Media
+                button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbar-collapse")
+                    span.navbar-toggler-icon
+                
+                div.collapse.navbar-collapse#navbar-collapse
+                    ul.navbar-nav.mr-auto
+                        li.nav-item: a.nav-link(href="/") Home
+                        li.nav-item: a.nav-link(href="/film") Film 
+                        li.nav-item: a.nav-link(href="/tv") TV                                                           
+                
+                    ul.navbar-nav.ml-auto
+                        if user
+                            li.nav-item: a.nav-link(href='/user_area') User Area
+                            li.nav-item: a.nav-link(href="/logout") Logout                    
+                        else
+                            li.nav-item: a.nav-link(href="/login") Login
+                    
+
+
+            div.main-body
+                block body
 
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.js")
