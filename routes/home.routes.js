@@ -1,22 +1,15 @@
+/**
+ * HOME ROUTER (/)
+ * all the routes that map to the base level domain
+ */
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
 // user model
 const User = require('../models/personSchema').Person;
+const checkSignIn = require('../shared/index.middle').checkSignIn;
 
-
-/**
- * Security method checks session exists if it doesn't show error
- */
-const checkSignIn = (req, res, next) => {
-    if(req.session.user){
-        next();
-    } else {
-        const err = new Error('Not logged in!');
-        next(err);
-    }
-};
 /**
  * Route Middleware to pick up if the user has signed in
  * if so store user data in global
@@ -149,11 +142,6 @@ router.get('/user_area', checkSignIn, (req, res) =>{
     res.send(req.session.user + ' Has signed in correctly');
 });
 
-/**
- * Error Route
- */
-// router.get('**', (req, res) =>{
-//     res.send("This is not the page you're looking for");
-// });
+
 
 module.exports = router;

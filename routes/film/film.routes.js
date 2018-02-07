@@ -1,29 +1,18 @@
+/**
+ * FILM ROUTER (/film)
+ * All the routes that map to the sub path of films
+ */
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
+// film model
 const Film = require('../../models/filmSchema').Film;
-
-const checkSignIn = (req, res, next) => {
-    if(req.session.user){
-        next();
-    } else {
-        const err = new Error('Not logged in!');
-        next(err);
-    }
-};
-/**
- * Route Middleware to pick up if the user has signed in
- * if so store user data in global
- */
-router.get('*', (req, res, next) =>{
-    res.locals.user = req.session.user || null;
-    console.log(res.locals.user);
-    next();
-});
+// 
+const checkSignIn = require('../../shared/index.middle').checkSignIn;
 
 router.get('/', (req, res) => {
-    res.send('films');
+    res.send('films: ' + res.locals.user);
 });
 
 module.exports = router;

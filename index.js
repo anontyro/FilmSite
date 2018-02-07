@@ -1,4 +1,8 @@
-// package imports
+/**
+ * EXPRESS JS ENTRY FILE
+ * the main file that builds the app and allows express to enter the app
+ */
+// PACKAGES -------------------------------------------------------------
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -8,29 +12,22 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
 
+// STATIC IMPORTS ------------------------------------------------------
 const conn = require('./config/env').MongoConnect;
 const sess = require('./config/env').SessionSecret;
-// connect to mongo db
+
+// DATABASES -----------------------------------------------------------
+//mongoDB connect
 mongoose.connect(conn);
 
-// my imports
-const homeRoutes = require('./routes/home.routes');
-const filmRoutes = require('./routes/film/film.routes');
-const errorRoutes = require('./routes/error.routes');
-
 // MIDDLEWARE ----------------------------------------------------------
+const middleware = require('./shared/index.middle');
 
 // Set Pug as the view engine to render the page
 app.set('view engine', 'pug');
 app.set('views', './views');
-/**
- * Basic Logging middleware
- * Middleware requires the next() callback
- */
-app.use((req, res, next) =>{
-    console.log('A new request was received at: ' + Date.now() );
-    next();
-})
+
+app.use(middleware.requestLogger);
 
 // Parse URL encoded data application/www
 app.use(bodyParser.urlencoded({extended: false}));
@@ -46,6 +43,7 @@ app.use(express.static(__dirname + '/public'));
 
 // cookie setup
 // app.use(cookieParser());
+
 // Session setup
 app.use(session({
     secret: sess,
@@ -53,17 +51,8 @@ app.use(session({
     saveUninitialized: false
 }));
 
-
 // ROUTES ----------------------------------------
-
-//Home Routes
-app.use('/', homeRoutes);
-
-//Film Routes
-app.use('/film', filmRoutes);
-
-//Error Routes
-app.use('**', errorRoutes);
+require('./routes/index')(app);
 
 // Server setup and port number
 app.listen(3000);

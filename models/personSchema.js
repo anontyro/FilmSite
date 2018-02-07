@@ -1,4 +1,7 @@
-// const express = require('express');
+/**
+ * PERSON MODEL
+ * database model for a person who is signed up for the site
+ */
 const mongoose = require('mongoose');
 
 const personSchema = mongoose.Schema({

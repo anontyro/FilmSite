@@ -1,3 +1,8 @@
+/**
+ * FILM MODEL
+ * database model for each film stored in the database along with all the required
+ * information
+ */
 const mongoose = require('mongoose');
 
 const filmSchema = mongoose.Schema({
