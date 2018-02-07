@@ -152,8 +152,8 @@ router.get('/user_area', checkSignIn, (req, res) =>{
 /**
  * Error Route
  */
-router.get('**', (req, res) =>{
-    res.send("This is not the page you're looking for");
-});
+// router.get('**', (req, res) =>{
+//     res.send("This is not the page you're looking for");
+// });
 
 module.exports = router;

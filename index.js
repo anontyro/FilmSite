@@ -14,7 +14,9 @@ const sess = require('./config/env').SessionSecret;
 mongoose.connect(conn);
 
 // my imports
-const homeRoutes = require('./routes/home.routes')
+const homeRoutes = require('./routes/home.routes');
+const filmRoutes = require('./routes/film/film.routes');
+const errorRoutes = require('./routes/error.routes');
 
 // MIDDLEWARE ----------------------------------------------------------
 
@@ -43,19 +45,25 @@ app.use(upload.array());
 app.use(express.static(__dirname + '/public'));
 
 // cookie setup
-app.use(cookieParser());
+// app.use(cookieParser());
 // Session setup
-app.use(session({secret: sess}));
+app.use(session({
+    secret: sess,
+    resave: false,
+    saveUninitialized: false
+}));
 
 
 // ROUTES ----------------------------------------
 
-//Home Router
-app.use('/',homeRoutes);
+//Home Routes
+app.use('/', homeRoutes);
 
+//Film Routes
+app.use('/film', filmRoutes);
 
+//Error Routes
+app.use('**', errorRoutes);
+
+// Server setup and port number
 app.listen(3000);
-
-// app.use(express.static(__dirname + '/views'));
-// for prefix /static for all static files
-// app.use('/static', express.static('public'));

@@ -8,9 +8,9 @@ const personSchema = mongoose.Schema({
     password: String
 });
 
-const Person = mongoose.model('Person', personSchema);
+const person = mongoose.model('Person', personSchema);
 
 module.exports ={
-    Person: Person
+    Person: person
 }
 
