@@ -8,11 +8,45 @@ const mongoose = require('mongoose');
 
 // film model
 const Film = require('../../models/filmSchema').Film;
-// 
+//SignIn middleware to protect routes
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 
+// film homepage
 router.get('/', (req, res) => {
-    res.send('films: ' + res.locals.user);
+    res.render('./film/index', {
+        title: 'Film Home'
+    });
+});
+
+// get add form to add a new film to the database
+router.get('/add', checkSignIn,(req, res) => {
+    res.render('./film/add', {
+        title: 'Add a new film'
+    })
+});
+// post the add form to add the film to the database
+router.post('/add', (req,res) =>{
+    const newFilm = req.body;
+    console.log(newFilm);
+    if(!newFilm.title || !newFilm.releaseDate) {
+        res.send('Sorry not all information was entered correctly, try again');
+    }else {
+        const film = new Film({
+            title: newFilm.title,
+            releaseDate: newFilm.releaseDate,
+            blurb: newFilm.blurb,
+            dateAdded: Date.now()
+        });
+
+        film.save((err, Film) =>{
+            if(err){
+                res.send('An error occured whilst trying to save the film data');
+            } else{
+                console.log(film);
+                res.send('new film successfully added');
+            }
+        });
+    }
 });
 
 module.exports = router;
