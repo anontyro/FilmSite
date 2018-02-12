@@ -11,10 +11,34 @@ const Film = require('../../models/filmSchema').Film;
 //SignIn middleware to protect routes
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 
+getLastAddedFilms = (limit, callback) =>{
+    Film.find()
+        .sort({dateAdded: -1})
+        .limit(limit)
+        .exec( (err, filmList) =>{
+            if(err){
+                callback(err);
+            } else {
+                callback(filmList);
+            }
+        });
+}
+
 // film homepage
 router.get('/', (req, res) => {
-    res.render('./film/index', {
-        title: 'Film Home'
+    filmList: getLastAddedFilms(2, (callback) => {
+        res.render('./film/index', {
+            title: 'Film Home',
+            filmList: callback
+        });
+    });
+
+});
+
+// display film list
+router.get('/list', (req, res) => {
+    Film.find( (err, response) => {
+        res.json(response);
     });
 });
 

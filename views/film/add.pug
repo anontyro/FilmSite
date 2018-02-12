@@ -2,3 +2,19 @@ extends ../layout
 block body
     div.main-film-container
         h3 New Film Form
+        div.film-add-form
+            form(action = '/film/add', method='POST')
+                div.form-group
+                    label(for = 'title') Title
+                    input.form-control#title(name = 'title' placeholder = 'Film title')
+
+                div.form-group
+                    label(for = 'releasedate') Release Date
+                    input.form-control#releasedate(name = 'releaseDate', value = new Date(Date.now()).toLocaleString())
+
+                div.form-group 
+                    label(for = 'blurb') Blurb
+                    textarea.form-control#blurb(name = 'blurb')
+
+                button.btn.btn-outline-success(type = 'submit') Add
+                
