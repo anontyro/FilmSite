@@ -5,11 +5,14 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const request = require('request');
+const apiKey = require('../../config/env').MovieDbKeyV3;
 
 // film model
 const Film = require('../../models/filmSchema').Film;
 //SignIn middleware to protect routes
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
+const movieApi = require('../../services/movieDbApi');
 
 getLastAddedFilms = (limit, callback) =>{
     Film.find()
@@ -24,8 +27,15 @@ getLastAddedFilms = (limit, callback) =>{
         });
 }
 
+
 // film homepage
 router.get('/', (req, res) => {
+    // request('https://api.themoviedb.org/3/movie/now_playing?' + apiKey, (err, response, body) =>{
+    //     console.log(res.json(body));
+    // });
+    movieApi.getNowShowing((body) =>{
+        console.log(body);
+    })
     filmList: getLastAddedFilms(2, (callback) => {
         res.render('./film/index', {
             title: 'Film Home',

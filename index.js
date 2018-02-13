@@ -11,6 +11,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const app = express();
+const request = require('request');
 
 // STATIC IMPORTS ------------------------------------------------------
 const conn = require('./config/env').MongoConnect;
