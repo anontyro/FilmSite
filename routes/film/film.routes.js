@@ -30,17 +30,14 @@ getLastAddedFilms = (limit, callback) =>{
 
 // film homepage
 router.get('/', (req, res) => {
-    // request('https://api.themoviedb.org/3/movie/now_playing?' + apiKey, (err, response, body) =>{
-    //     console.log(res.json(body));
-    // });
-    movieApi.getNowShowing((body) =>{
-        console.log(body);
-    })
     filmList: getLastAddedFilms(2, (callback) => {
-        res.render('./film/index', {
-            title: 'Film Home',
-            filmList: callback
-        });
+        movieApi.getNowShowing((body) =>{
+            // res.send(body);
+            res.render('./film/index', {
+                title: 'Film Home',
+                filmList: JSON.parse(body)
+            });
+        })
     });
 
 });
