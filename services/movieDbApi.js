@@ -20,5 +20,15 @@ module.exports ={
                 callback(body);
             }
         })
+    },
+    getFilmDetails: (id, callback) =>{
+        const options = buildRequestOptions(
+            ('https://api.themoviedb.org/3/movie/' + id) , 1, apiKey
+        );
+        request( options, (err, res, body) => {
+            if(!err && res.statusCode == 200) {
+                callback(body);
+            }
+        })
     }
 }

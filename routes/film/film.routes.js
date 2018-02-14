@@ -49,8 +49,11 @@ router.get('/', (req, res) => {
 
 // specific film detail view
 router.get('/:id', (req,res) =>{
-    res.render('./film/film_detail', {
-        id: req.params.id
+    const filmId = req.params.id;
+    movieApi.getFilmDetails(filmId, (body) => {
+        res.render('./film/film_detail', {
+            filmContent: JSON.parse(body)
+        });
     });
 });
 
