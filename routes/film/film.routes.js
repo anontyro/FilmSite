@@ -32,14 +32,24 @@ getLastAddedFilms = (limit, callback) =>{
 router.get('/', (req, res) => {
     filmList: getLastAddedFilms(2, (callback) => {
         movieApi.getNowShowing((body) =>{
+            const output = JSON.parse(body);
+            const ranStart = Math.floor(Math.random() * ( (output.results.length-10) - 0) + 0);
+            console.log('random start: ' + ranStart + ', from total:' + output.results.length)
             // res.send(body);
             res.render('./film/index', {
                 title: 'Film Home',
-                filmList: JSON.parse(body)
+                filmList: output,
+                filmListStart: ranStart,
+                filmListEnd: (ranStart + 10)
             });
         })
     });
 
+});
+
+// specific film detail view
+router.get('/:id', (req,res) =>{
+    
 });
 
 // display film list

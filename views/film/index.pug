@@ -1,11 +1,18 @@
 extends ../layout
+block head
+    link(href='/css/film/main-film.css', rel='stylesheet')    
+    script(src="/js/film/film.js")
 block body
     div.main-film-container
-        h3 Film content will go here
-        for film in filmList.results
-            div.film-container
-                div.film-title
-                    h3=film.title
-                div.film-blurb
-                    p=film.overview
+        for film in filmList.results.slice(filmListStart, filmListEnd)
+            div.film-container(onmouseover="onPosterEvent(this)" onmouseout="onPosterEvent(this)")
+                div.film-roll-over(id=film.id)
+                    div.film-title
+                        h3=film.title
+                    div.film-overview
+                        p=film.overview
+
+                div.film-poster
+                    img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
+
         
