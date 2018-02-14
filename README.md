@@ -1,4 +1,7 @@
 # ImageBook
+
+[![Dependency Status](https://david-dm.org/anontyro/Imagebook.svg)](https://david-dm.org/anontyro/Imagebook)
+
 This is my first time with Node.JS and Express.JS working on the basics and trying to understand the backend Javascript style. It has proven to be quite enlightening and moving from the frontend to the backend with Javascript has been a lot easier than I would have initially imagined.
 
 ### The Site
