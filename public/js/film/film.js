@@ -8,8 +8,7 @@ onPosterEvent = (event) =>{
     hovered.children[0].setAttribute("style", "display: block;");
 }
 
-getRandomNumber = (min, max) => {
-    console.log(max);
-    const x = Math.random() * (max - min) + min;
-    return x;
+onPosterClicked = (id) => {
+    console.log(id);
+    window.location.replace('/film/'+id);
 }
