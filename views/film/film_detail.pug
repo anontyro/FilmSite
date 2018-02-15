@@ -6,12 +6,26 @@ block body
 
         div.film-detail-side
             div.film-header
-                h3 #{filmContent.title} ( #{filmContent.vote_average} )
+                h3 #{filmContent.title} (#{filmContent.release_date.slice(0,4)})
                 p.film-sub '#{filmContent.tagline}'
             div.film-poster
                 img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w200" + filmContent.poster_path)
             div.film-sub
-                p.film-sub-info #{filmContent.release_date}
+                p.film-sub-info #[span.page-sub-headings Released:] #{filmContent.release_date}
+                div.film-rating
+                    p.film-sub-info #[span.page-sub-headings Rating:]
+                    div.film-rating-fa 
+                        - for(let i = 0; i < 5; i++){
+                            if i < Math.floor(filmContent.vote_average / 2)
+                                i.fas.fa-ticket
+                            else
+                                i.far.fa-ticket
+                        - }               
+                p.film-sub-info #[span.page-sub-headings Net Revenue:] $#{(filmContent.revenue - filmContent.budget)} 
+                p.film-sub-info #[span.page-sub-headings Runtime:] #{filmContent.runtime} minutes  
+                div.film-links
+                    a.film-link(href='http://www.imdb.com/title/' +filmContent.imdb_id target='_blank') #[i.fab.fa-imdb]  
+                    a.film-link(href=filmContent.homepage target='_blank') #[i.far.fa-external-link-square-alt]                                                                                                
         
         div.film-page-container
 

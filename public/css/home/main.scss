@@ -1,8 +1,16 @@
 $font-header: 'Montserrat', sans-serif;
 $font-body: 'Roboto', sans-serif;
 $font-additional: 'Asap', sans-serif;
+
 *{
     font-family: $font-body;
+}
+a{
+    color: #a2a392;
+}
+a:hover{
+    text-decoration: none;
+    color: lighten(#a2a392, 20%);
 }
 html, body{
     height: 100%;

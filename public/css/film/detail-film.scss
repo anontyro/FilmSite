@@ -1,13 +1,15 @@
-
+// generic class for the general style
 .page-container{
     padding: 20px;
     border: 1px solid #dbdbdb;
     box-shadow: 4px 5px 50px -10px black;
 }
 
+// page level container
 .main-film-container {
     display: flex;
     flex-direction: row;
+    // side info bar
     .film-detail-side {
         @extend .page-container;
         width: 350px;
@@ -30,10 +32,31 @@
                 box-shadow: 4px 4px 20px 4px #343a40;
             }
         }
+        .film-sub{
+            .film-rating{
+                display: flex;
+                p.film-sub-info{
+                    margin-right: 10px;
+                }
+                .film-rating-fa {
+                    font-size: 1.4em;
+                    display: flex;
+                    justify-content: space-evenly;
+                    width: 60%;
+                    color: #a2a392;
+                }
+            }
+            .film-links{
+                font-size: 2em;
+            }
+        }
     }
+
+    // main page content here
     .film-page-container{
         width: 80%;
         margin-left: 20px;
+        // Search bar
         .film-search-bar-top{
             @extend .page-container;            
             position: relative;
@@ -52,6 +75,7 @@
                 border: none;
             }
         }
+        // Key body element
         .film-main-body{
             @extend .page-container;
             margin: 20px 20px 20px 0px;            
@@ -60,7 +84,7 @@
 
 }
 
-
+// sub heading highlighter
 .page-sub-headings{
     color: gray;
     font-weight: 600;

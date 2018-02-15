@@ -47,6 +47,16 @@ router.get('/', (req, res) => {
 
 });
 
+// film search view
+router.get('/search', (req,res) =>{
+    const query = req.query.q;
+    movieApi.getFilmSearch(query, 1, (body) => {
+        res.render('./film/film_search', {
+            filmSearch: JSON.parse(body)
+        });
+    });
+});
+
 // specific film detail view
 router.get('/:id', (req,res) =>{
     const filmId = req.params.id;

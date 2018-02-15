@@ -29,6 +29,24 @@
       margin-bottom: 20px;
       -webkit-box-shadow: 4px 4px 20px 4px #343a40;
       box-shadow: 4px 4px 20px 4px #343a40; }
+    .main-film-container .film-detail-side .film-sub .film-rating {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; }
+      .main-film-container .film-detail-side .film-sub .film-rating p.film-sub-info {
+        margin-right: 10px; }
+      .main-film-container .film-detail-side .film-sub .film-rating .film-rating-fa {
+        font-size: 1.4em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+        justify-content: space-evenly;
+        width: 60%;
+        color: #a2a392; }
+    .main-film-container .film-detail-side .film-sub .film-links {
+      font-size: 2em; }
   .main-film-container .film-page-container {
     width: 80%;
     margin-left: 20px; }
