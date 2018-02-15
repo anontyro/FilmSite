@@ -1,5 +1,18 @@
 extends ../layout
-
+block head
+    link(href='/css/film/detail-film.css', rel='stylesheet') 
 block body
     div.main-film-container
-        h3 film details #{filmContent.title}
+
+        div.film-detail-side
+            div.film-header
+                h3 #{filmContent.title} ( #{filmContent.vote_average} )
+                p.film-sub '#{filmContent.tagline}'
+            div.film-poster
+                img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w200" + filmContent.poster_path)
+            div.film-sub
+                p.film-sub-info #{filmContent.release_date}
+        
+        div.film-search-bar-top
+            i.fas.fa-search.search-icon
+            input.search-box(name=q placeholder='Search...')

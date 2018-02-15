@@ -1,0 +1,49 @@
+.main-film-container {
+    display: flex;
+    flex-direction: row;
+    .film-detail-side {
+        width: 350px;
+        margin-top: 20px;
+        margin-left: 30px;
+        min-height: 700px;
+        padding: 20px;
+        border: 1px solid #dbdbdb;
+        box-shadow: 4px 5px 50px -10px black;
+        .film-header{
+            text-align: center;
+            p.film-sub {
+                font-style: italic;
+                font-weight: 600;
+                color: #00006b;
+            }
+        }
+        .film-poster{
+            img.img-fluid.img-poster {
+                display: block;
+                margin: auto;
+                margin-bottom: 20px;
+                box-shadow: 4px 4px 20px 4px #343a40;
+            }
+        }
+    }
+    .film-search-bar-top{
+        position: relative;
+        padding: 10px;
+        height: 50px;
+        width: 70%;
+        margin: 20px;
+        border: 1px solid #dbdbdb;
+        box-shadow: 4px 5px 50px -10px black;
+        .search-icon{
+            position: absolute;
+            top: 10px;
+            font-size: 1.6em;
+            color: #dbdbdb;
+        }
+        input.search-box {
+            width: 90%;
+            margin-left: 40px;
+            border: none;
+        }
+    }
+}

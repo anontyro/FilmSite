@@ -1,6 +1,18 @@
+$font-header: 'Montserrat', sans-serif;
+$font-body: 'Roboto', sans-serif;
+$font-additional: 'Asap', sans-serif;
+*{
+    font-family: $font-body;
+}
 html, body{
     height: 100%;
 }
+h1, h2, h3, h4{
+    font-family: $font-header;
+}
+
+
+
 body{
     display: flex;
     flex-direction: column;
