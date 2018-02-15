@@ -13,6 +13,13 @@ block body
             div.film-sub
                 p.film-sub-info #{filmContent.release_date}
         
-        div.film-search-bar-top
-            i.fas.fa-search.search-icon
-            input.search-box(name=q placeholder='Search...')
+        div.film-page-container
+
+            div.film-search-bar-top
+                i.fas.fa-search.search-icon
+                input.search-box(name=q placeholder='Search...')
+
+            div.film-main-body
+                div.film-overview
+                    p.page-sub-headings Overview
+                    p.overview-text #{filmContent.overview}

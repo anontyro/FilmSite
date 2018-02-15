@@ -1,3 +1,9 @@
+.page-container, .main-film-container .film-detail-side, .main-film-container .film-page-container .film-search-bar-top, .main-film-container .film-page-container .film-main-body {
+  padding: 20px;
+  border: 1px solid #dbdbdb;
+  -webkit-box-shadow: 4px 5px 50px -10px black;
+  box-shadow: 4px 5px 50px -10px black; }
+
 .main-film-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,11 +16,7 @@
     width: 350px;
     margin-top: 20px;
     margin-left: 30px;
-    min-height: 700px;
-    padding: 20px;
-    border: 1px solid #dbdbdb;
-    -webkit-box-shadow: 4px 5px 50px -10px black;
-    box-shadow: 4px 5px 50px -10px black; }
+    min-height: 700px; }
     .main-film-container .film-detail-side .film-header {
       text-align: center; }
       .main-film-container .film-detail-side .film-header p.film-sub {
@@ -27,21 +29,26 @@
       margin-bottom: 20px;
       -webkit-box-shadow: 4px 4px 20px 4px #343a40;
       box-shadow: 4px 4px 20px 4px #343a40; }
-  .main-film-container .film-search-bar-top {
-    position: relative;
-    padding: 10px;
-    height: 50px;
-    width: 70%;
-    margin: 20px;
-    border: 1px solid #dbdbdb;
-    -webkit-box-shadow: 4px 5px 50px -10px black;
-    box-shadow: 4px 5px 50px -10px black; }
-    .main-film-container .film-search-bar-top .search-icon {
-      position: absolute;
-      top: 10px;
-      font-size: 1.6em;
-      color: #dbdbdb; }
-    .main-film-container .film-search-bar-top input.search-box {
-      width: 90%;
-      margin-left: 40px;
-      border: none; }
+  .main-film-container .film-page-container {
+    width: 80%;
+    margin-left: 20px; }
+    .main-film-container .film-page-container .film-search-bar-top {
+      position: relative;
+      padding: 10px;
+      height: 50px;
+      margin: 20px 20px 20px 0px; }
+      .main-film-container .film-page-container .film-search-bar-top .search-icon {
+        position: absolute;
+        top: 10px;
+        font-size: 1.6em;
+        color: #dbdbdb; }
+      .main-film-container .film-page-container .film-search-bar-top input.search-box {
+        width: 90%;
+        margin-left: 40px;
+        border: none; }
+    .main-film-container .film-page-container .film-main-body {
+      margin: 20px 20px 20px 0px; }
+
+.page-sub-headings {
+  color: gray;
+  font-weight: 600; }

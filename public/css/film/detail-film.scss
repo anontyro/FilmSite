@@ -1,14 +1,19 @@
+
+.page-container{
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 4px 5px 50px -10px black;
+}
+
 .main-film-container {
     display: flex;
     flex-direction: row;
     .film-detail-side {
+        @extend .page-container;
         width: 350px;
         margin-top: 20px;
         margin-left: 30px;
         min-height: 700px;
-        padding: 20px;
-        border: 1px solid #dbdbdb;
-        box-shadow: 4px 5px 50px -10px black;
         .film-header{
             text-align: center;
             p.film-sub {
@@ -26,24 +31,38 @@
             }
         }
     }
-    .film-search-bar-top{
-        position: relative;
-        padding: 10px;
-        height: 50px;
-        width: 70%;
-        margin: 20px;
-        border: 1px solid #dbdbdb;
-        box-shadow: 4px 5px 50px -10px black;
-        .search-icon{
-            position: absolute;
-            top: 10px;
-            font-size: 1.6em;
-            color: #dbdbdb;
+    .film-page-container{
+        width: 80%;
+        margin-left: 20px;
+        .film-search-bar-top{
+            @extend .page-container;            
+            position: relative;
+            padding: 10px;
+            height: 50px;
+            margin: 20px 20px 20px 0px;
+            .search-icon{
+                position: absolute;
+                top: 10px;
+                font-size: 1.6em;
+                color: #dbdbdb;
+            }
+            input.search-box {
+                width: 90%;
+                margin-left: 40px;
+                border: none;
+            }
         }
-        input.search-box {
-            width: 90%;
-            margin-left: 40px;
-            border: none;
+        .film-main-body{
+            @extend .page-container;
+            margin: 20px 20px 20px 0px;            
         }
     }
+
+}
+
+
+.page-sub-headings{
+    color: gray;
+    font-weight: 600;
+
 }
