@@ -8,7 +8,9 @@ block body
         div.film-detail-side
             div.film-header
                 h3 #{filmContent.title} (#{filmContent.release_date.slice(0,4)})
-                p.film-sub '#{filmContent.tagline}'
+                if filmContent.tagline
+                    p.film-sub '#{filmContent.tagline}'
+            //- Film poster section
             div.film-poster
                 img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w200" + filmContent.poster_path)
             div.film-sub
@@ -22,7 +24,11 @@ block body
                             else
                                 i.far.fa-ticket
                         - }               
-                p.film-sub-info #[span.page-sub-headings Net Revenue:] $#{(filmContent.revenue - filmContent.budget)} 
+                p.film-sub-info #[span.page-sub-headings Net Revenue:]
+                    if filmContent.revenue 
+                        | $#{(filmContent.revenue - filmContent.budget)} 
+                    else
+                        | N/A
                 p.film-sub-info #[span.page-sub-headings Runtime:] #{filmContent.runtime} minutes  
                 div.film-links
                     a.film-link(href='http://www.imdb.com/title/' +filmContent.imdb_id target='_blank') #[i.fab.fa-imdb]  
@@ -40,3 +46,22 @@ block body
                 div.film-overview
                     p.page-sub-headings Overview
                     p.overview-text #{filmContent.overview}
+
+                div.film-reviews
+                    if user
+                        p.page-sub-headings My Review                       
+                        form(action = '/film/' + filmContent.id, method = "POST")
+                            div.form-row
+                                div.form-group.col-md-10
+                                    input.form-control(name='title' type = "text" placeholder = "Title")
+                                div.form-group-col-md
+                                    select.form-control(name='rating')
+                                        - for(let i = 0; i <= 5; i++){
+                                            option(value=i) #{i} star
+                                        - }
+                            textarea.form-control#userreview(name = 'review' placeholder = "enter your awesome review here.." rows='6')
+                            button.btn.btn-outline-success(type = 'submit') Add
+                    else
+                        p Sign in to speak your mind
+            div.film-main-body
+                p.page-sub-headings User Reviews

@@ -70,6 +70,18 @@ router.get('/:id', (req,res) =>{
     });
 });
 
+// user review post from the film
+router.post('/:id', (req, res) =>{
+    const filmId = req.params.id;
+    const newReview = req.body;
+    res.send( 
+        req.session.user + 
+        ' has entered title:' +newReview.title + 
+        ' and review: ' + newReview.review + 
+        ' they rated: ' + newReview.rating +
+        ' for: ' +filmId);
+})
+
 // display film list
 router.get('/list', (req, res) => {
     Film.find( (err, response) => {
