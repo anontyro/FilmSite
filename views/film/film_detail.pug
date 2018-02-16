@@ -1,6 +1,7 @@
 extends ../layout
 block head
-    link(href='/css/film/detail-film.css', rel='stylesheet') 
+    link(href='/css/film/detail-film.css', rel='stylesheet')
+    script(src="/js/film/film.js")
 block body
     div.main-film-container
 
@@ -30,8 +31,10 @@ block body
         div.film-page-container
 
             div.film-search-bar-top
-                i.fas.fa-search.search-icon
-                input.search-box(name=q placeholder='Search...')
+                form(action = '/film/search', method = 'GET')
+                    i.fas.fa-search.search-icon
+                    input.search-box#search-box(name='q' placeholder='Search...')
+
 
             div.film-main-body
                 div.film-overview

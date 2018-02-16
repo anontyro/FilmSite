@@ -50,6 +50,9 @@ router.get('/', (req, res) => {
 // film search view
 router.get('/search', (req,res) =>{
     const query = req.query.q;
+    if(query === undefined){
+        res.send('error query string required in the format q=thor');
+    }
     movieApi.getFilmSearch(query, 1, (body) => {
         res.render('./film/film_search', {
             filmSearch: JSON.parse(body)

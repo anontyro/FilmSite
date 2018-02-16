@@ -2,4 +2,5 @@ extends ../layout
 
 block body
     div.film-search
-        p=filmSearch
+        for film in filmSearch.results
+            p=film.title
