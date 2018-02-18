@@ -10,6 +10,8 @@ const apiKey = require('../../config/env').MovieDbKeyV3;
 
 // film model
 const Film = require('../../models/filmSchema').Film;
+const FilmReview = require('../../models/userReviewSchema').FilmReview;
+
 //SignIn middleware to protect routes
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 const movieApi = require('../../services/movieDbApi');
@@ -60,27 +62,14 @@ router.get('/search', (req,res) =>{
     });
 });
 
-// specific film detail view
-router.get('/:id', (req,res) =>{
-    const filmId = req.params.id;
-    movieApi.getFilmDetails(filmId, (body) => {
-        res.render('./film/film_detail', {
-            filmContent: JSON.parse(body)
-        });
+
+
+router.get('/reviewList/:username', (req, res) =>{
+    const Username = req.params.username;
+    FilmReview.find({username: Username}).exec( (err, response) =>{
+        res.json(response);
     });
 });
-
-// user review post from the film
-router.post('/:id', (req, res) =>{
-    const filmId = req.params.id;
-    const newReview = req.body;
-    res.send( 
-        req.session.user + 
-        ' has entered title:' +newReview.title + 
-        ' and review: ' + newReview.review + 
-        ' they rated: ' + newReview.rating +
-        ' for: ' +filmId);
-})
 
 // display film list
 router.get('/list', (req, res) => {
@@ -118,6 +107,43 @@ router.post('/add', (req,res) =>{
             }
         });
     }
+});
+
+// specific film detail view
+router.get('/:id', (req,res) =>{
+    const filmId = req.params.id;
+    const reviewAdded = req.query.review;
+    movieApi.getFilmDetails(filmId, (body) => {
+        res.render('./film/film_detail', {
+            filmContent: JSON.parse(body),
+            updates: reviewAdded
+        });
+    });
+});
+
+// user review post from the film
+router.post('/:id', (req, res) =>{
+    const filmId = req.params.id;
+    const review = req.body;
+    const newReview = new FilmReview({
+        username: req.session.user.username,
+        filmId: filmId,
+        filmTitle: review.filmTitle,
+        title: review.title,
+        rating: review.rating,
+        review: review.review,
+        reviewDate: Date.now(),
+    });
+
+    newReview.save((err, Review) => {
+        if(err){
+            console.log(err);
+            res.send('An error occured whilst connecting to the database');
+        } else {
+            console.log(newReview);
+            res.redirect('/'+ filmId +'?review='+ newReview.title);
+        }
+    });
 });
 
 module.exports = router;

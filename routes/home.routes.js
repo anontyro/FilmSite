@@ -119,7 +119,11 @@ router.post('/login', (req,res) =>{
                 res.send('Error incorrect login details');
             } else {
                 console.log(response);
-                req.session.user = response.email;
+                const User = {
+                    username: response.email,
+                    
+                }
+                req.session.user = User;
                 console.log(req.session);
                 res.redirect('/user_area');
             }

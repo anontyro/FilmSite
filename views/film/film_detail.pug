@@ -51,10 +51,11 @@ block body
                     if user
                         p.page-sub-headings My Review                       
                         form(action = '/film/' + filmContent.id, method = "POST")
+                            input.form-control(name='filmTitle' type='text' value=filmContent.title disabled style='display:none;')                                                    
                             div.form-row
                                 div.form-group.col-md-10
                                     input.form-control(name='title' type = "text" placeholder = "Title")
-                                div.form-group-col-md
+                                div.form-group-col-md-2
                                     select.form-control(name='rating')
                                         - for(let i = 0; i <= 5; i++){
                                             option(value=i) #{i} star
