@@ -33,19 +33,6 @@
             }
         }
         .film-sub{
-            .film-rating{
-                display: flex;
-                p.film-sub-info{
-                    margin-right: 10px;
-                }
-                .film-rating-fa {
-                    font-size: 1.4em;
-                    display: flex;
-                    justify-content: space-evenly;
-                    width: 60%;
-                    color: #a2a392;
-                }
-            }
             .film-links{
                 font-size: 2em;
             }
@@ -82,6 +69,38 @@
         }
     }
 
+}
+
+.film-user-review{
+    .film-review-title{
+        display: flex;
+        justify-content: space-between;
+        p.review-title {
+            text-transform: capitalize;
+        }
+        p.review-date{
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+    }
+    .film-review-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.film-rating{
+    display: flex;
+    p.film-sub-info{
+        margin-right: 10px;
+    }
+    .film-rating-fa {
+        font-size: 1.4em;
+        display: flex;
+        justify-content: space-evenly;
+        width: 60%;
+        color: #a2a392;
+    }
 }
 
 // sub heading highlighter

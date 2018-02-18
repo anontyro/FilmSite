@@ -1,5 +1,6 @@
 extends ../layout
 block body
     h3 Main content here
-    h3=user.username
+    if user
+        h3=user.username
     img(src = "/img/myPic.jpg")

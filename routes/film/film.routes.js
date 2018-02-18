@@ -116,15 +116,26 @@ router.post('/add', (req,res) =>{
 router.get('/:id', (req,res) =>{
     const FilmId = req.params.id;
     const reviewAdded = req.query.review;
+    const user = req.session.user;
+    let userReview;
     FilmReview.find({filmId: FilmId}).exec( (err, reviews) =>{
         if(err){
             console.log(err);
         }
+        if(user){
+            for(let i = 0; i < reviews.length; i++) {
+                if(reviews[i].username === user.username){
+                    userReview = reviews[i];
+                }
+            }
+        }
+        console.log(userReview);
         movieApi.getFilmDetails(FilmId, (body) => {
             res.render('./film/film_detail', {
                 filmContent: JSON.parse(body),
                 updates: reviewAdded,
-                userReviews: reviews
+                userReviews: reviews,
+                currentUserReview: userReview,
             });
         });
     });
@@ -135,6 +146,8 @@ router.get('/:id', (req,res) =>{
 router.post('/:id', (req, res) =>{
     const filmId = req.params.id;
     const review = req.body;
+    const update = req.query.type;
+
     const newReview = new FilmReview({
         username: req.session.user.username,
         filmId: filmId,
@@ -145,15 +158,32 @@ router.post('/:id', (req, res) =>{
         reviewDate: Date.now(),
     });
 
-    newReview.save((err, Review) => {
-        if(err){
-            console.log(err);
-            res.send('An error occured whilst connecting to the database');
-        } else {
-            console.log(newReview);
-            res.redirect('/film/'+ filmId +'?review='+ newReview.title);
-        }
-    });
+    if(update === 'update'){
+        const query = {
+            username: req.session.user.username,
+            filmId: filmId
+        };
+        FilmReview.findOneAndUpdate(query, review, (err, Review) =>{
+            if(err){
+                console.log(err);
+                res.send('error');
+            } else{
+                console.log(newReview);
+                res.redirect('/film/'+ filmId +'?review='+ newReview.title);
+            }
+
+        });
+    }else{
+        newReview.save((err, Review) => {
+            if(err){
+                console.log(err);
+                res.send('An error occured whilst connecting to the database');
+            } else {
+                console.log(newReview);
+                res.redirect('/film/'+ filmId +'?review='+ newReview.title);
+            }
+        });
+    }
 });
 
 module.exports = router;
