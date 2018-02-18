@@ -62,8 +62,9 @@ router.get('/search', (req,res) =>{
     });
 });
 
-
-
+/**
+ * Get the reviews that a user has done from the database
+ */
 router.get('/reviewList/:username', (req, res) =>{
     const Username = req.params.username;
     FilmReview.find({username: Username}).exec( (err, response) =>{
@@ -109,16 +110,25 @@ router.post('/add', (req,res) =>{
     }
 });
 
+// Least specific routes these are the last
+
 // specific film detail view
 router.get('/:id', (req,res) =>{
-    const filmId = req.params.id;
+    const FilmId = req.params.id;
     const reviewAdded = req.query.review;
-    movieApi.getFilmDetails(filmId, (body) => {
-        res.render('./film/film_detail', {
-            filmContent: JSON.parse(body),
-            updates: reviewAdded
+    FilmReview.find({filmId: FilmId}).exec( (err, reviews) =>{
+        if(err){
+            console.log(err);
+        }
+        movieApi.getFilmDetails(FilmId, (body) => {
+            res.render('./film/film_detail', {
+                filmContent: JSON.parse(body),
+                updates: reviewAdded,
+                userReviews: reviews
+            });
         });
     });
+
 });
 
 // user review post from the film
@@ -128,7 +138,7 @@ router.post('/:id', (req, res) =>{
     const newReview = new FilmReview({
         username: req.session.user.username,
         filmId: filmId,
-        filmTitle: review.filmTitle,
+        filmTitle: review.filmtitle,
         title: review.title,
         rating: review.rating,
         review: review.review,
@@ -141,7 +151,7 @@ router.post('/:id', (req, res) =>{
             res.send('An error occured whilst connecting to the database');
         } else {
             console.log(newReview);
-            res.redirect('/'+ filmId +'?review='+ newReview.title);
+            res.redirect('/film/'+ filmId +'?review='+ newReview.title);
         }
     });
 });

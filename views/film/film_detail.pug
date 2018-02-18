@@ -51,7 +51,7 @@ block body
                     if user
                         p.page-sub-headings My Review                       
                         form(action = '/film/' + filmContent.id, method = "POST")
-                            input.form-control(name='filmTitle' type='text' value=filmContent.title disabled style='display:none;')                                                    
+                            input.form-control(name='filmtitle' type='text' value=filmContent.title disabled style='display:none;')                                                    
                             div.form-row
                                 div.form-group.col-md-10
                                     input.form-control(name='title' type = "text" placeholder = "Title")
@@ -66,3 +66,12 @@ block body
                         p Sign in to speak your mind
             div.film-main-body
                 p.page-sub-headings User Reviews
+                if userReviews
+                    for review in userReviews
+                        div.film-user-review
+                            div.film-review-title
+                                p.review-title=review.title
+                                p.review-date=review.reviewDate
+                            p.review-body=review.review
+                            p.reviewer=review.username
+

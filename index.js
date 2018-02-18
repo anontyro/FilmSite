@@ -24,6 +24,8 @@ mongoose.connect(conn);
 // MIDDLEWARE ----------------------------------------------------------
 const middleware = require('./shared/index.middle');
 
+app.locals.moment = require('moment');
+
 // Set Pug as the view engine to render the page
 app.set('view engine', 'pug');
 app.set('views', './views');
