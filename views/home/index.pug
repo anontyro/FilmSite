@@ -8,7 +8,11 @@ block body
         h3.landing-title #{title}
         p.landing-byline For Media Loves On The Move
     div.main-body
-
+        div.latest-carousel
+            for film, i in filmList
+                div.film-carousel-container(id='poster'+i style= i%2 === 0? 'display: none':'' onmouseover="onPosterHover(this)" onmouseout="onPosterHover(this)")
+                    div.film-poster
+                        img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
     if user
         h3=user.username
-    img(src = "/img/myPic.jpg")
+    //- img(src = "/img/myPic.jpg")

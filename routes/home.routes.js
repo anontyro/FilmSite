@@ -10,6 +10,9 @@ const mongoose = require('mongoose');
 const User = require('../models/personSchema').Person;
 const checkSignIn = require('../shared/index.middle').checkSignIn;
 
+// film methods
+const movieApi = require('../services/movieDbApi');
+
 /**
  * Route Middleware to pick up if the user has signed in
  * if so store user data in global
@@ -24,13 +27,17 @@ router.get('*', (req, res, next) =>{
  * Home Route
  */
 router.get('/', (req, res) =>{
+    movieApi.getNowShowing( (body) =>{
+        const output = JSON.parse(body);
+        res.render('./home/index', {
+            title: "5 Minute Media",
+            url: "https://github.com",
+            css: "/css/home/index.css",
+            filmList: output.results
+    
+        });
+    })
 
-    res.render('./home/index', {
-        title: "5 Minute Media",
-        url: "https://github.com",
-        css: "/css/home/index.css",
-
-    });
 });
 
 /**
