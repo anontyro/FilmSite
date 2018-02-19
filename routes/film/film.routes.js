@@ -12,27 +12,17 @@ const apiKey = require('../../config/env').MovieDbKeyV3;
 const Film = require('../../models/filmSchema').Film;
 const FilmReview = require('../../models/userReviewSchema').FilmReview;
 
+// mongoose methods to connect to my database
+const mongoApi = require('../../services/mongooseSharedApi')
+
 //SignIn middleware to protect routes
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 const movieApi = require('../../services/movieDbApi');
 
-getLastAddedFilms = (limit, callback) =>{
-    Film.find()
-        .sort({dateAdded: -1})
-        .limit(limit)
-        .exec( (err, filmList) =>{
-            if(err){
-                callback(err);
-            } else {
-                callback(filmList);
-            }
-        });
-}
-
 
 // film homepage
 router.get('/', (req, res) => {
-    filmList: getLastAddedFilms(2, (callback) => {
+    filmList: mongoApi.getLastAddedFilms(2, (callback) => {
         movieApi.getNowShowing((body) =>{
             const output = JSON.parse(body);
             const ranStart = Math.floor(Math.random() * ( (output.results.length-10) - 0) + 0);
@@ -118,10 +108,8 @@ router.get('/:id', (req,res) =>{
     const reviewAdded = req.query.review;
     const user = req.session.user;
     let userReview;
-    FilmReview.find({filmId: FilmId}).exec( (err, reviews) =>{
-        if(err){
-            console.log(err);
-        }
+
+    mongoApi.getFilmReviewsByFilmId(FilmId, (reviews) =>{
         if(user){
             for(let i = 0; i < reviews.length; i++) {
                 if(reviews[i].username === user.username){
@@ -129,7 +117,6 @@ router.get('/:id', (req,res) =>{
                 }
             }
         }
-        console.log(userReview);
         movieApi.getFilmDetails(FilmId, (body) => {
             res.render('./film/film_detail', {
                 filmContent: JSON.parse(body),
@@ -138,11 +125,11 @@ router.get('/:id', (req,res) =>{
                 currentUserReview: userReview,
             });
         });
-    });
-
+    })
 });
 
 // user review post from the film
+// needs to be reconsidered and refactored
 router.post('/:id', (req, res) =>{
     const filmId = req.params.id;
     const review = req.body;

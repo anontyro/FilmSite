@@ -1,0 +1,8 @@
+.landing-header {
+  text-align: center;
+  margin: 20px 0px 20px 0px; }
+  .landing-header h3.landing-title {
+    font-size: 2em; }
+  .landing-header p.landing-byline {
+    color: #343a40;
+    font-weight: 600; }

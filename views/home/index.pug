@@ -1,6 +1,14 @@
 extends ../layout
+block head
+    link(href='/css/home/landing-page.css', rel='stylesheet')    
+    script(src="/js/home/landing-page.js")
+
 block body
-    h3 Main content here
+    div.landing-header
+        h3.landing-title #{title}
+        p.landing-byline For Media Loves On The Move
+    div.main-body
+
     if user
         h3=user.username
     img(src = "/img/myPic.jpg")
