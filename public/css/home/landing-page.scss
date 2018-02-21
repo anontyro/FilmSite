@@ -17,4 +17,22 @@
         cursor: pointer;
     }
 }
+.latest-lists-container{
+    .latest-lists {
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-around;
+        margin-top: 50px;
+        p.page-sub-headings{
+            text-align: center;
+        }
+        .film-list{
+            width: 50%;
+        }
+        .tv-list{
+            width: 50%;
+        }
+    }
+}
 

@@ -1,6 +1,7 @@
 extends ../layout
 block head
-    link(href='/css/home/landing-page.css', rel='stylesheet')    
+    link(href='/css/home/landing-page.css', rel='stylesheet')   
+    script(src="/js/film/film-strip.js")     
     script(src="/js/home/landing-page.js")
 
 block body
@@ -10,11 +11,29 @@ block body
     div.main-body
         div.latest-carousel
             for film, i in filmList
-                div.hvr-grow.film-carousel-container(id='poster'+i style= i%2 === 0? 'display: none':'' onmouseover="onPosterHover(this)" onmouseout="onPosterHover(this)" onclick=`onPosterClicked(${film.id})`)
+                div.hvr-grow.film-carousel-container(
+                    id='poster'+i 
+                    style= i%2 === 0? 'display: none':'' 
+                    onmouseover="onPosterHover(this, true)" 
+                    onmouseout="onPosterHover(this, false); " 
+                    onclick=`onPosterClicked(${film.id})`
+                    )
                     div.film-poster
                         img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
                     div.film-carousel-text(style="display:none;")
                         p #{film.overview.slice(0,50)}...
+
+        div.latest-lists-container
+            div.latest-lists
+                div.film-list
+                    p.page-sub-headings Films
+                    ul
+                        for film in filmList
+                            li: a(href='/film/' + film.id) #{film.title}
+                
+                div.tv-list
+                    p.page-sub-headings TV
+    
     if user
         h3=user.username
     //- img(src = "/img/myPic.jpg")
