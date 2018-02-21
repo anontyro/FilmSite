@@ -12,8 +12,8 @@
 
 .latest-carousel{
     display: flex;
+    .film-carousel-container{
+        cursor: pointer;
+    }
 }
 
-.film-poster-hover{
-    max-width: 200%;
-}

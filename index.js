@@ -30,6 +30,7 @@ app.locals.moment = require('moment');
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+
 app.use(middleware.requestLogger);
 
 // Parse URL encoded data application/www
@@ -43,6 +44,7 @@ app.use(upload.array());
 
 // enable loading of static files
 app.use(express.static(__dirname + '/public'));
+app.use('/hover', express.static(__dirname + '/node_modules/hover.css/css'))
 
 // cookie setup
 // app.use(cookieParser());

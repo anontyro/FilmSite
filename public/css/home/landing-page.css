@@ -11,6 +11,5 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
-
-.film-poster-hover {
-  max-width: 200%; }
+  .latest-carousel .film-carousel-container {
+    cursor: pointer; }
