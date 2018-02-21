@@ -45,6 +45,7 @@ app.use(upload.array());
 // enable loading of static files
 app.use(express.static(__dirname + '/public'));
 app.use('/hover', express.static(__dirname + '/node_modules/hover.css/css'))
+app.use('/animate', express.static(__dirname + '/node_modules/animate.css'))
 
 // cookie setup
 // app.use(cookieParser());

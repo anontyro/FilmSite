@@ -13,6 +13,8 @@ block body
                 div.hvr-grow.film-carousel-container(id='poster'+i style= i%2 === 0? 'display: none':'' onmouseover="onPosterHover(this)" onmouseout="onPosterHover(this)" onclick=`onPosterClicked(${film.id})`)
                     div.film-poster
                         img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
+                    div.film-carousel-text(style="display:none;")
+                        p #{film.overview.slice(0,50)}...
     if user
         h3=user.username
     //- img(src = "/img/myPic.jpg")

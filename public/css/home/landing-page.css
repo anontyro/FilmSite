@@ -8,6 +8,7 @@
     font-weight: 600; }
 
 .latest-carousel {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
