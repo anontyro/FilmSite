@@ -19,7 +19,6 @@ const mongoApi = require('../../services/mongooseSharedApi')
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 const movieApi = require('../../services/movieDbApi');
 
-
 // film homepage
 router.get('/', (req, res) => {
     filmList: mongoApi.getLastAddedFilms(2, (callback) => {

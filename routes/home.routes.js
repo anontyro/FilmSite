@@ -12,7 +12,7 @@ const checkSignIn = require('../shared/index.middle').checkSignIn;
 
 // film methods
 const movieApi = require('../services/movieDbApi');
-
+const tvApi = require('../services/movieDbTvApi');
 /**
  * Route Middleware to pick up if the user has signed in
  * if so store user data in global
@@ -27,17 +27,20 @@ router.get('*', (req, res, next) =>{
  * Home Route
  */
 router.get('/', (req, res) =>{
-    movieApi.getNowShowing( (body) =>{
-        const output = JSON.parse(body);
-        res.render('./home/index', {
-            title: "5 Minute Media",
-            url: "https://github.com",
-            css: "/css/home/index.css",
-            filmList: output.results
-    
-        });
+    tvApi.getAiringToday((tvBody) =>{
+        movieApi.getNowShowing( (FilmBody) =>{
+            const output = JSON.parse(FilmBody);
+            const tvOutput = JSON.parse(tvBody);
+            res.render('./home/index', {
+                title: "5 Minute Media",
+                url: "https://github.com",
+                css: "/css/home/index.css",
+                filmList: output.results,
+                tvList: tvOutput.results,
+        
+            });
+        })
     })
-
 });
 
 /**

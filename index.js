@@ -10,8 +10,8 @@ const upload = multer();
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const app = express();
 const request = require('request');
+const app = express();
 
 // STATIC IMPORTS ------------------------------------------------------
 const conn = require('./config/env').MongoConnect;

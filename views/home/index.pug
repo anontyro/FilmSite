@@ -33,6 +33,9 @@ block body
                 
                 div.tv-list
                     p.page-sub-headings TV
+                    ul
+                        for show in tvList
+                            li: a(href='/tv/' + show.id) #{show.name}
     
     if user
         h3=user.username
