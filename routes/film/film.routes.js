@@ -159,31 +159,6 @@ router.post('/:id', (req, res) =>{
         }
     });
     
-
-
-    // if(update === 'update'){
-
-        // FilmReview.findOneAndUpdate(query, review, (err, Review) =>{
-    //         if(err){
-    //             console.log(err);
-    //             res.send('error');
-    //         } else{
-    //             console.log(newReview);
-    //             res.redirect('/film/'+ filmId +'?review='+ newReview.title);
-    //         }
-
-    //     });
-    // }else{
-    //     newReview.save((err, Review) => {
-    //         if(err){
-    //             console.log(err);
-    //             res.send('An error occured whilst connecting to the database');
-    //         } else {
-    //             console.log(newReview);
-    //             res.redirect('/film/'+ filmId +'?review='+ newReview.title);
-    //         }
-    //     });
-    // }
 });
 
 module.exports = router;

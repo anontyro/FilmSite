@@ -35,7 +35,9 @@ router.get('/reviewList/:username', (req, res) =>{
 });
 
 /**
- * TV Show detail page
+ * TV Show detail page will also return all user reviews currently
+ * If the user is signed in and has a review it will add to the editing panel
+ * for the user to edit and update
  * GET: /tv/123
 */
 router.get('/:id', (req, res) =>{
@@ -63,6 +65,12 @@ router.get('/:id', (req, res) =>{
     })
 });
 
+/**
+ * POST Method for :id
+ * Takes the form data and adds it to the database, if a review already
+ * exists then update else create a new one.
+ * After complete the page will redirect back to the film detail page
+ */
 router.post('/:id', (req, res) => {
     const tvId = req.params.id;
     const review = req.body;
