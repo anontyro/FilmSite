@@ -134,7 +134,7 @@ router.post('/:id', (req, res) =>{
     const review = req.body;
     const update = req.query.type;
 
-    const newReview = new FilmReview({
+    const newReview ={
         username: req.session.user.username,
         filmId: filmId,
         filmTitle: review.filmtitle,
@@ -142,7 +142,7 @@ router.post('/:id', (req, res) =>{
         rating: review.rating,
         review: review.review,
         reviewDate: Date.now(),
-    });
+    };
 
     const query = {
         username: req.session.user.username,
@@ -155,7 +155,7 @@ router.post('/:id', (req, res) =>{
             res.send(err);
         } else{
             console.log(newReview);
-            res.redirect('/film' + filmId + '?review=' + newReview.title)
+            res.redirect('/film/' + filmId + '?review=' + newReview.title)
         }
     });
     

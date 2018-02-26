@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 
 // schemas
 const Film = require('../models/filmSchema').Film;
-const FilmReview = require('../models/userReviewSchema').FilmReview;
-
+const Review = require('../models/userReviewSchema');
 
 module.exports ={
     getLastAddedFilms: (limit, callback) =>{
@@ -22,15 +21,25 @@ module.exports ={
             });
     },
     getFilmReviewsByFilmId: (FilmId, callback) =>{
-        FilmReview
-            .find({filmId: FilmId})
-            .exec( (err, reviews) =>{
-                if(err){
-                    console.log(err);
-                    callback(err);
-                } else{
-                    callback(reviews);
-                }
-            });
+        Review.FilmReview.find({filmId: FilmId})
+                .exec( (err, reviews) =>{
+                    if(err){
+                        console.log(err);
+                        callback(err);
+                    } else{
+                        callback(reviews);
+                    }
+                });
+    },
+    getTvReviewsByTvId: (TvId, callback) =>{
+        Review.TvReview.find({tvId: TvId})
+                .exec( (err, reviews) => {
+                    if(err){
+                        console.log(err);
+                        callback(err);
+                    }else{
+                        callback(reviews);
+                    }
+                });
     },
 }
