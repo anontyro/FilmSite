@@ -1,0 +1,105 @@
+// generic class for the general style
+.page-container{
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 4px 5px 50px -10px black;
+}
+
+// page level container
+.main-film-container {
+    display: flex;
+    flex-direction: row;
+    // side info bar
+    .film-detail-side {
+        @extend .page-container;
+        width: 350px;
+        margin-top: 20px;
+        margin-left: 30px;
+        min-height: 700px;
+        .film-header{
+            text-align: center;
+            p.film-sub {
+                font-style: italic;
+                font-weight: 600;
+                color: #00006b;
+            }
+        }
+        .film-poster{
+            img.img-fluid.img-poster {
+                display: block;
+                margin: auto;
+                margin-bottom: 20px;
+                box-shadow: 4px 4px 20px 4px #343a40;
+            }
+        }
+        .film-sub{
+            .film-links{
+                font-size: 2em;
+            }
+        }
+    }
+
+    // main page content here
+    .film-page-container{
+        width: 80%;
+        margin-left: 20px;
+        // Search bar
+        .film-search-bar-top{
+            @extend .page-container;            
+            position: relative;
+            padding: 10px;
+            height: 50px;
+            margin: 20px 20px 20px 0px;
+            .search-icon{
+                position: absolute;
+                top: 10px;
+                font-size: 1.6em;
+                color: #dbdbdb;
+            }
+            input.search-box {
+                width: 90%;
+                margin-left: 40px;
+                border: none;
+            }
+        }
+        // Key body element
+        .film-main-body{
+            @extend .page-container;
+            margin: 20px 20px 20px 0px;            
+        }
+    }
+
+}
+
+.film-user-review{
+    .film-review-title{
+        display: flex;
+        justify-content: space-between;
+        p.review-title {
+            text-transform: capitalize;
+        }
+        p.review-date{
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+    }
+    .film-review-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.film-rating{
+    display: flex;
+    p.film-sub-info{
+        margin-right: 10px;
+    }
+    .film-rating-fa {
+        font-size: 1.4em;
+        display: flex;
+        justify-content: space-evenly;
+        width: 60%;
+        color: #a2a392;
+    }
+}
+

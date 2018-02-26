@@ -1,0 +1,32 @@
+.landing-header {
+  text-align: center;
+  margin: 20px 0px 20px 0px; }
+  .landing-header h3.landing-title {
+    font-size: 2em; }
+  .landing-header p.landing-byline {
+    color: #343a40;
+    font-weight: 600; }
+
+.latest-carousel {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .latest-carousel .film-carousel-container {
+    cursor: pointer; }
+
+.latest-lists-container .latest-lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: auto;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-top: 50px; }
+  .latest-lists-container .latest-lists p.page-sub-headings {
+    text-align: center; }
+  .latest-lists-container .latest-lists .film-list {
+    width: 50%; }
+  .latest-lists-container .latest-lists .tv-list {
+    width: 50%; }

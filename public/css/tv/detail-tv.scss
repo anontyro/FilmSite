@@ -1,0 +1,12 @@
+
+
+.detail-network-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    .network-logo{
+        width: 60px;
+    }
+}
