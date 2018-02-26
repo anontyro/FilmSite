@@ -53,7 +53,8 @@ block body
                     if user && !currentUserReview
                         p.page-sub-headings My Review                       
                         form(action = '/tv/' + showContent.id, method = "POST")
-                            input.form-control(name='tvtitle' type='text' value=showContent.title readonly style='display:none;')                                                    
+                            input.form-control(name='tvtitle' type='hidden' value=showContent.name readonly)
+                            input.form-control(name='season' type='hidden' value=showContent.number_of_seasons readonly)                                                    
                             div.form-row
                                 div.form-group.col-md
                                     input.form-control(name='title' type = "text" placeholder = "Title")
@@ -67,7 +68,8 @@ block body
                     
                     else if currentUserReview
                         form(action = '/tv/' + showContent.id + '?type=update', method = "POST")
-                            input.form-control(name='tvtitle' type='text' value=showContent.title readonly style='display:none;')                                                    
+                            input.form-control(name='tvtitle' type='hidden' value=showContent.name readonly)                                                    
+                            input.form-control(name='season' type='hidden' value=showContent.number_of_seasons readonly )                                                    
                             div.form-row
                                 div.form-group.col-md
                                     input.form-control(name='title' type = "text" value=currentUserReview.title)

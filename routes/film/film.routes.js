@@ -144,32 +144,46 @@ router.post('/:id', (req, res) =>{
         reviewDate: Date.now(),
     });
 
-    if(update === 'update'){
-        const query = {
-            username: req.session.user.username,
-            filmId: filmId
-        };
-        FilmReview.findOneAndUpdate(query, review, (err, Review) =>{
-            if(err){
-                console.log(err);
-                res.send('error');
-            } else{
-                console.log(newReview);
-                res.redirect('/film/'+ filmId +'?review='+ newReview.title);
-            }
+    const query = {
+        username: req.session.user.username,
+        filmId: filmId
+    };
 
-        });
-    }else{
-        newReview.save((err, Review) => {
-            if(err){
-                console.log(err);
-                res.send('An error occured whilst connecting to the database');
-            } else {
-                console.log(newReview);
-                res.redirect('/film/'+ filmId +'?review='+ newReview.title);
-            }
-        });
-    }
+    FilmReview.findOneAndUpdate(query, newReview, {upsert: true}, (err, body) =>{
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else{
+            console.log(newReview);
+            res.redirect('/film' + filmId + '?review=' + newReview.title)
+        }
+    });
+    
+
+
+    // if(update === 'update'){
+
+        // FilmReview.findOneAndUpdate(query, review, (err, Review) =>{
+    //         if(err){
+    //             console.log(err);
+    //             res.send('error');
+    //         } else{
+    //             console.log(newReview);
+    //             res.redirect('/film/'+ filmId +'?review='+ newReview.title);
+    //         }
+
+    //     });
+    // }else{
+    //     newReview.save((err, Review) => {
+    //         if(err){
+    //             console.log(err);
+    //             res.send('An error occured whilst connecting to the database');
+    //         } else {
+    //             console.log(newReview);
+    //             res.redirect('/film/'+ filmId +'?review='+ newReview.title);
+    //         }
+    //     });
+    // }
 });
 
 module.exports = router;
