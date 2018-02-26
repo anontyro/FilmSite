@@ -51,9 +51,9 @@ block body
                     if user && !currentUserReview
                         p.page-sub-headings My Review                       
                         form(action = '/film/' + filmContent.id, method = "POST")
-                            input.form-control(name='filmtitle' type='text' value=filmContent.title disabled style='display:none;')                                                    
+                            input.form-control(name='filmtitle' type='text' value=filmContent.title readonly style='display:none;')                                                    
                             div.form-row
-                                div.form-group.col-md-10
+                                div.form-group.col-md
                                     input.form-control(name='title' type = "text" placeholder = "Title")
                                 div.form-group-col-md-2
                                     select.form-control(name='rating')
@@ -65,9 +65,9 @@ block body
                     
                     else if currentUserReview
                         form(action = '/film/' + filmContent.id + '?type=update', method = "POST")
-                            input.form-control(name='filmtitle' type='text' value=filmContent.title disabled style='display:none;')                                                    
+                            input.form-control(name='filmtitle' type='text' value=filmContent.title readonly style='display:none;')                                                    
                             div.form-row
-                                div.form-group.col-md-10
+                                div.form-group.col-md
                                     input.form-control(name='title' type = "text" value=currentUserReview.title)
                                 div.form-group-col-md-2
                                     select.form-control(name='rating')

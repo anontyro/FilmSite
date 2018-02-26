@@ -1,5 +1,110 @@
 extends ../layout
+block head
+    link(href='/css/film/detail-film.css', rel='stylesheet')
+    link(href='/css/tv/detail-tv.css', rel='stylesheet')
 
 block body
-    div.main-tv-container
-        h3 #{showContent.name}
+    - let seasonsPrefix = (showContent.number_of_seasons < 10? 0 : '')
+    div.main-film-container
+        div.film-detail-side
+            div.film-header
+                h3 #{showContent.name} (#{showContent.first_air_date.slice(0,4)})
+            //- Film poster section
+            div.film-poster
+                img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w200" + showContent.poster_path)
+            div.film-sub
+                p.film-sub-info #[span.page-sub-headings First Aired:] #{showContent.first_air_date}
+                div.film-rating
+                    p.film-sub-info #[span.page-sub-headings Rating:]
+                    div.film-rating-fa 
+                        - for(let i = 0; i < 5; i++){
+                            if i < Math.floor(showContent.vote_average / 2)
+                                i.fas.fa-ticket
+                            else
+                                i.far.fa-ticket
+                        - }   
+
+                p.film-sub-info #[span.page-sub-headings Episode:] S#{seasonsPrefix}#{showContent.number_of_seasons}-#{showContent.number_of_episodes}
+                p.film-sub-info #[span.page-sub-headings Runtime:] #{showContent.episode_run_time[0]} minutes  
+                p.film-sub-info #[span.page-sub-headings Create By:] #{showContent.created_by[0].name} 
+                p.film-sub-info #[span.page-sub-headings Status:] #{showContent.status}  
+                
+                div.detail-network-container
+                    for logo in showContent.networks
+                        div.network-logo
+                            img.img-fluid.img-network(src="https://image.tmdb.org/t/p/w200" + logo.logo_path)
+
+                div.film-links
+                    a.film-link(href=showContent.homepage target='_blank') #[i.far.fa-external-link-square-alt]                                                                                                
+        
+        div.film-page-container
+
+            div.film-search-bar-top
+                form(action = '/tv/search', method = 'GET')
+                    i.fas.fa-search.search-icon
+                    input.search-box#search-box(name='q' placeholder='Search...')
+
+            div.film-main-body
+                div.film-overview
+                    p.page-sub-headings Overview
+                    p.overview-text #{showContent.overview}
+
+                div.film-reviews
+                    if user && !currentUserReview
+                        p.page-sub-headings My Review                       
+                        form(action = '/tv/' + showContent.id, method = "POST")
+                            input.form-control(name='tvtitle' type='text' value=showContent.title readonly style='display:none;')                                                    
+                            div.form-row
+                                div.form-group.col-md
+                                    input.form-control(name='title' type = "text" placeholder = "Title")
+                                div.form-group-col-md-2
+                                    select.form-control(name='rating')
+                                        - for(let i = 0; i <= 5; i++){
+                                            option(value=i) #{i} star
+                                        - }
+                            textarea.form-control#userreview(name = 'review' placeholder = "enter your awesome review here.." rows='6')
+                            button.btn.btn-outline-success(type = 'submit') Add
+                    
+                    else if currentUserReview
+                        form(action = '/tv/' + showContent.id + '?type=update', method = "POST")
+                            input.form-control(name='tvtitle' type='text' value=showContent.title readonly style='display:none;')                                                    
+                            div.form-row
+                                div.form-group.col-md
+                                    input.form-control(name='title' type = "text" value=currentUserReview.title)
+                                div.form-group-col-md-2
+                                    select.form-control(name='rating')
+                                        - for(let i = 0; i <= 5; i++){
+                                            if i === currentUserReview.rating 
+                                                option(selected value=i) #{i} star
+                                            else
+                                                option(value=i) #{i} star
+                                            
+                                        - }
+                            textarea.form-control#userreview(name = 'review' rows='6') #{currentUserReview.review}
+                            button.btn.btn-outline-success(type = 'submit') Update
+                    
+                    else
+                        p Sign in to speak your mind
+            div.film-main-body
+                p.page-sub-headings User Reviews
+                if userReviews
+                    for review in userReviews
+                        div.film-user-review
+                            hr.review-break                                                 
+                            div.film-review-title
+                                p.review-title #[span.page-sub-headings #{review.title}]
+                                p.review-date #{moment(review.reviewDate).format('YYYY-MM-DD')}
+                            div.film-review-body
+                                p.review=review.review
+                            div.film-review-footer
+                                p.reviewer #[span.page-sub-headings By:] #{review.username}
+                                div.film-rating
+                                    p.film-sub-info #[span.page-sub-headings Rating:]
+                                    div.film-rating-fa 
+                                        - for(let i = 0; i < 5; i++){
+                                            if i < review.rating
+                                                i.fas.fa-ticket
+                                            else
+                                                i.far.fa-ticket
+                                        - } 
+                                    
