@@ -1,11 +1,12 @@
 extends ../layout
 block head
     link(href='/css/film/main-film.css', rel='stylesheet')  
+    script(src="/js/shared/slideshow.js")
     script(src="/js/film/film.js")
 block body
     div.main-film-container
         for film in filmList.results.slice(filmListStart, filmListEnd)
-            div.film-container(onmouseover="onPosterEvent(this)" onmouseout="onPosterEvent(this)" onclick=`onPosterClicked(${film.id})`)
+            div.film-container(onmouseover="onPosterEvent(this); pauseSlideShow();" onmouseout="onPosterEvent(this); startSlideShow();" onclick=`onPosterClicked(${film.id})`)
                 div.film-roll-over(id=film.id )
                     div.film-title
                         h3=film.title

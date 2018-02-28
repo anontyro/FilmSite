@@ -21,7 +21,13 @@ const tvApi = require('../../services/movieDbTvApi');
  * GET: /tv/
  */
 router.get('/', (req, res) =>{
-
+    tvApi.getAiringToday((tvBody) =>{
+        const output = JSON.parse(tvBody);
+        res.render('./tv/index',{
+            title: 'TV Home',
+            tvList: output,
+        });
+    });
 });
 
 /**

@@ -12,3 +12,4 @@ onPosterClicked = (id) => {
     console.log(id);
     window.location.replace('/film/'+id);
 }
+

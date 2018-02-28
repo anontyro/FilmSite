@@ -21,7 +21,7 @@ const movieApi = require('../../services/movieDbApi');
 
 // film homepage
 router.get('/', (req, res) => {
-    filmList: mongoApi.getLastAddedFilms(2, (callback) => {
+    mongoApi.getLastAddedFilms(2, (callback) => {
         movieApi.getNowShowing((body) =>{
             const output = JSON.parse(body);
             const ranStart = Math.floor(Math.random() * ( (output.results.length-10) - 0) + 0);
