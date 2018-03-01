@@ -20,4 +20,8 @@ block body
             p.page-sub-headings Latest Info
         div.main-latest-reviews
             p.page-sub-headings Latest Reviews
+        div.main-film-search
+            form(action = '/film/search', method = 'GET')
+                i.fas.fa-search.search-icon
+                input.search-box#search-box(name='q' placeholder='Search...')
         

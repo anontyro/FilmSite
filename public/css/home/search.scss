@@ -1,0 +1,23 @@
+@import './main.scss';
+
+.film-search{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.search-container{
+    @extend .page-container;
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    .search-category {
+        width: 10%;
+        font-size: 40px;
+        padding-top: 2%;
+    }
+    .search-result {
+        width: 70%;
+    }
+}

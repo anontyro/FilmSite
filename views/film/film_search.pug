@@ -1,13 +1,18 @@
 extends ../layout
-
+block head
+    link(href='/css/home/search.css', rel='stylesheet')
 block body
     div.film-search
         for film in filmSearch.results
-            a.search-link(href='/film/' + film.id )
-                div.search-result
-                    div.search-header
-                        p.search-title #{film.title}
-                            if film.release_date
-                            |    (#{film.release_date.substring(0,4)})
-                    div.search-info
-                        p.search-overview #{film.overview.substring(0,150)}...
+            a.search-link(href=(film.media_type == 'tv'? '/tv/' : '/film/') + film.id)  
+                div.search-container
+                    div.search-category
+                        if film.media_type == 'tv'
+                            i.fal.fa-tv-retro
+                        else
+                            i.fal.fa-film
+                    div.search-result
+                        div.search-header
+                            p.search-title.page-sub-headings #{film.title} #{film.release_date? film.release_date.substring(0,4): ''}
+                        div.search-info
+                            p.search-overview #{film.overview.substring(0,150)}...

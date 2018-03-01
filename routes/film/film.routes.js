@@ -45,6 +45,7 @@ router.get('/search', (req,res) =>{
         res.send('error query string required in the format q=thor');
     }
     movieApi.getFilmSearch(query, 1, (body) => {
+        console.log(JSON.parse(body));
         res.render('./film/film_search', {
             filmSearch: JSON.parse(body)
         });

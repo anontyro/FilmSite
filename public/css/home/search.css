@@ -40,8 +40,34 @@ body {
   color: gray;
   font-weight: 600; }
 
-.page-container {
+.page-sub-headings:hover {
+  color: #b3b3b3; }
+
+.page-container, .search-container {
   padding: 20px;
   border: 1px solid #dbdbdb;
   -webkit-box-shadow: 4px 5px 50px -10px black;
   box-shadow: 4px 5px 50px -10px black; }
+
+.film-search {
+  width: 90%;
+  margin: auto;
+  margin-top: 20px; }
+
+.search-container {
+  margin: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse; }
+  .search-container .search-category {
+    width: 10%;
+    font-size: 40px;
+    padding-top: 2%; }
+  .search-container .search-result {
+    width: 70%; }

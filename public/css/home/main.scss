@@ -42,5 +42,13 @@ body{
 .page-sub-headings{
     color: gray;
     font-weight: 600;
+}
+.page-sub-headings:hover{
+    color: lighten($color: (gray), $amount: 20)
+}
 
+.page-container{
+    padding: 20px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 4px 5px 50px -10px black;
 }
