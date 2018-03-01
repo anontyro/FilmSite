@@ -6,12 +6,17 @@ window.onload = () =>{
     myShow = new SlideShow(2000, ".main-film-container");
 }
 
-onPosterEvent = (event) =>{
+onPosterEvent = (event, mouseOver) =>{
     if(hovered !== undefined) {
         hovered.children[0].setAttribute("style", "display: none;");
     }
-    hovered = event;
-    hovered.children[0].setAttribute("style", "display: block;");
+    if(mouseOver){
+        hovered = event;
+        hovered.children[0].setAttribute("style", "display: block;");
+    }else{
+        hovered.children[0].setAttribute("style", "display: none;");
+    }
+
 }
 
 onPosterClicked = (id) => {
