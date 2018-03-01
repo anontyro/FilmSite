@@ -19,8 +19,6 @@ h1, h2, h3, h4{
     font-family: $font-header;
 }
 
-
-
 body{
     display: flex;
     flex-direction: column;
@@ -51,4 +49,16 @@ body{
     padding: 20px;
     border: 1px solid #dbdbdb;
     box-shadow: 4px 5px 50px -10px black;
+}
+
+.search-form{
+    .search-icon {
+        color: #9a9da0;
+    }
+    input{
+        background-color: transparent;
+        border: none;
+        padding-left: 10px;
+        width: 100px;
+    }
 }

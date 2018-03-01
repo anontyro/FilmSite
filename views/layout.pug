@@ -23,7 +23,11 @@ html(lang="en")
                         li.nav-item: a.nav-link(href="/film") Film 
                         li.nav-item: a.nav-link(href="/tv") TV                                                           
                 
-                    ul.navbar-nav.ml-auto
+                    form.form-inline.my-lg-0.ml-auto.search-form(action = '/film/search', method = 'GET')
+                        i.fas.fa-search.search-icon
+                        input.mr-sm-2.search-box#header-search-box(name='q' placeholder='Search...')
+
+                    ul.navbar-nav
                         if user
                             li.nav-item: a.nav-link(href='/user_area') User Area
                             li.nav-item: a.nav-link(href="/logout") Logout                    

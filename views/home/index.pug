@@ -26,16 +26,18 @@ block body
         div.latest-lists-container
             div.latest-lists
                 div.film-list
-                    p.page-sub-headings Films
-                    ul
+                    div.list-container-header
+                        p.page-sub-headings Films
+                    ul.main-media-list
                         for film in filmList
-                            li: a(href='/film/' + film.id) #{film.title}
+                            li: a(href='/film/' + film.id) #[i.fal.fa-film] #{film.title.substring(0,40)}#{film.title.length > 40? '...' : ''}
                 
                 div.tv-list
-                    p.page-sub-headings TV
-                    ul
+                    div.list-container-header
+                        p.page-sub-headings TV
+                    ul.main-media-list
                         for show in tvList
-                            li: a(href='/tv/' + show.id) #{show.name}
+                            li: a(href='/tv/' + show.id) #[i.fal.fa-tv-retro] #{show.name.substring(0,40)}#{show.name.length > 40? '...' : ''}
     
     if user
         h3=user.username

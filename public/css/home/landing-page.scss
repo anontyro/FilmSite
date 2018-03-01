@@ -28,6 +28,20 @@
         margin-top: 50px;
         p.page-sub-headings{
             text-align: center;
+            margin-bottom: 0px
+        }
+        .list-container-header{
+
+            margin: 20px;
+            padding: 5px;
+            background-color: #343a40;
+            box-shadow: 4px 2px 20px 0px black;
+        }
+        ul.main-media-list{
+            list-style: none;
+            li{
+                padding: 2px;
+            }
         }
         .film-list{
             width: 50%;
