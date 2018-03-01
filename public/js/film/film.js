@@ -3,7 +3,7 @@ let hovered;
 let myShow;
 
 window.onload = () =>{
-    myShow = new SlideShow(2000, ".main-film-container");
+    myShow = new SlideShow(2000, ".main-film-slideshow");
 }
 
 onPosterEvent = (event, mouseOver) =>{

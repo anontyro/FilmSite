@@ -5,15 +5,19 @@ block head
     script(src="/js/film/film.js")
 block body
     div.main-film-container
-        for film in filmList.results.slice(filmListStart, filmListEnd)
-            div.film-container(onmouseover="onPosterEvent(this, true); myShow.pauseSlideShow();" onmouseout="onPosterEvent(this, false); myShow.startSlideShow();" onclick=`onPosterClicked(${film.id})`)
-                div.film-roll-over(id=film.id )
-                    div.film-title
-                        h3=film.title
-                    div.film-overview
-                        p=film.overview
+        div.main-film-slideshow
+            for film in filmList.results.slice(filmListStart, filmListEnd)
+                div.film-container(onmouseover="onPosterEvent(this, true); myShow.pauseSlideShow();" onmouseout="onPosterEvent(this, false); myShow.startSlideShow();" onclick=`onPosterClicked(${film.id})`)
+                    div.film-roll-over(id=film.id )
+                        div.film-title
+                            h3=film.title
+                        div.film-overview
+                            p=film.overview
 
-                div.film-poster
-                    img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
-
+                    div.film-poster
+                        img.img-fluid.img-poster(src="https://image.tmdb.org/t/p/w300" + film.poster_path)
+        div.main-info-panel
+            p.page-sub-headings Latest Info
+        div.main-latest-reviews
+            p.page-sub-headings Latest Reviews
         
