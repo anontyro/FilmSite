@@ -6,6 +6,7 @@
 const homeRoutes = require('./home.routes');
 const filmRoutes = require('./film/film.routes');
 const tvRoutes = require('./tv/tv.routes');
+const newsRoutes = require('./news/news.routes');
 const errorRoutes = require('./error.routes');
 
 /**
@@ -16,6 +17,7 @@ module.exports = (app)=>{
     app.use('/', homeRoutes);
     app.use('/film', filmRoutes);
     app.use('/tv', tvRoutes);
+    app.use('/news', newsRoutes);
     app.use('**', errorRoutes);
 
 };
