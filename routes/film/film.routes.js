@@ -76,7 +76,7 @@ router.get('/add', checkSignIn,(req, res) => {
     })
 });
 // post the add form to add the film to the database
-router.post('/add', (req,res) =>{
+router.post('/add', checkSignIn, (req,res) =>{
     const newFilm = req.body;
     console.log(newFilm);
     if(!newFilm.title || !newFilm.releaseDate) {

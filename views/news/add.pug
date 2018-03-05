@@ -1,0 +1,12 @@
+extends ../layout
+block head
+    link(href='/quill/quill.snow.css', rel='stylesheet')
+
+block body
+    h3 Create News
+    div#editor-container
+
+
+block end
+    script(src="/quill/quill.js")   
+    script(src="/js/news/add-news.js")
