@@ -1,10 +1,30 @@
 extends ../layout
 block head
     link(href='/quill/quill.snow.css', rel='stylesheet')
+    link(href='/css/new/add-news.css', rel='stylesheet')
 
 block body
-    h3 Create News
-    div#editor-container
+    h3.news-add-header Create News Form
+    div.news-add-form
+        form(action = '/news/add', method='POST')
+            input.form-control(name='newsBody' type='text'  readonly style='display:none;') 
+            div.form-group
+                label(for = 'title') Title
+                input.form-control#newsTitle(name = 'title', placeholder="Some great news")
+            div.form-group
+                label(for = 'publishDate') Publish Date
+                input.form-control#newsPublishDate(type="date", name = 'publishDate', value = new Date(Date.now()).toLocaleString())
+            div.form-check
+                input.form-check-input#newsDraft(name = 'draft', type="checkbox", value="draft", checked)
+                label.form-check-label(for = 'draft') Draft                
+            div.form-group
+                label(for = 'tags') Tags
+                input.form-control#newsTags(name = 'tags', placeholder="news; information; awesome")
+            div.form-group
+                label(for = 'coverImg') Cover Image
+                input.form-control#newsTitle( type="file", name = 'coverImg')      
+            label(for = 'newsBody') News Body
+            div#editor-container
 
 
 block end
