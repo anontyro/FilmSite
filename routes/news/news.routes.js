@@ -36,6 +36,7 @@ router.get('/add', checkSignIn, (req, res) =>{
 router.post('/add', checkSignIn, (req, res) =>{
     const newNews = req.body;
     console.log(newNews);
+    res.json(newNews);
 })
 
 // Delete - remove a news article

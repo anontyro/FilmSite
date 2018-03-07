@@ -6,8 +6,8 @@ block head
 block body
     h3.news-add-header Create News Form
     div.news-add-form
-        form(action = '/news/add', method='POST')
-            input.form-control(name='newsBody' type='text'  readonly style='display:none;') 
+        form#addNewsForm(action = '/news/add', method='POST')
+            input.form-control#newBody(name='newsBody' type='hidden') 
             div.form-group
                 label(for = 'title') Title
                 input.form-control#newsTitle(name = 'title', placeholder="Some great news")
@@ -26,6 +26,7 @@ block body
             label(for = 'newsBody') News Body
             div#editor-container
 
+            button.btn.btn-outline-success Add
 
 block end
     script(src="/quill/quill.js")   
