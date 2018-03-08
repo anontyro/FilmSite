@@ -15,24 +15,13 @@ const News = require('../../models/newsSchema').News;
 
 const newsApi = require('../../services/newsApi');
 
+/** Protect routes that require the user logged in*/
 const checkSignIn = require('../../shared/index.middle').checkSignIn;
 
-// save to folder middleware
-const multer = require('multer');
+/** File upload middleware */
+const getFile = require('../../shared/index.middle').setFileUpload;
 
-const path = require('path');
-
-const storage = multer.diskStorage({
-    destination: ( req, file, cb) =>{
-        cb(null, 'public/img/news/cover_img/')
-    },
-    filename: (req, file, cb) =>{
-        cb(null, file.originalname)
-    }
-});
-
-const upload = multer({storage: storage});
-// end of middleware
+const upload = getFile('public/img/news/cover_img/');
 
 // index - news homepage
 router.get('/', (req, res) =>{
@@ -46,13 +35,16 @@ router.get('/', (req, res) =>{
 // Add new - add a new news article
 // Update - update a news article
 //both can be the same route
-router.get('/add',  (req, res) =>{
+router.get('/add',checkSignIn,  (req, res) =>{
     res.render('./news/add', {
         title: 'Add a new Review'
     })
 });
 
-router.post('/add',  upload.single('imageupload'), (req, res) =>{
+/**
+ * 
+ */
+router.post('/add',checkSignIn,  upload.single('imageupload'), (req, res) =>{
     const newNews = req.body;
     console.log(req.file);
     res.send(req.body);
