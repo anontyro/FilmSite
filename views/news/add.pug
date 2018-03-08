@@ -6,7 +6,7 @@ block head
 block body
     h3.news-add-header Create News Form
     div.news-add-form
-        form#addNewsForm(action = '/news/add', method='POST')
+        form#addNewsForm(action = '/news/add', method='POST' enctype='multipart/form-data')
             input.form-control#newBody(name='newsBody' type='hidden') 
             div.form-group
                 label(for = 'title') Title
@@ -27,6 +27,10 @@ block body
             div#editor-container
 
             button.btn.btn-outline-success Add
+
+    form(method='post', enctype='multipart/form-data')
+        input(type='file', name='imageupload')
+        input(type='submit', name='uploadimage', value='Upload Image')
 
 block end
     script(src="/quill/quill.js")   

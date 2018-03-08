@@ -22,16 +22,16 @@ const multer = require('multer');
 
 const path = require('path');
 
-let storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: ( req, file, cb) =>{
-        cb(null, '/public/img/new/cover_img/')
+        cb(null, 'public/img/news/cover_img/')
     },
     filename: (req, file, cb) =>{
         cb(null, file.originalname)
     }
 });
 
-let upload = multer({storage: storage});
+const upload = multer({storage: storage});
 // end of middleware
 
 // index - news homepage
@@ -54,8 +54,8 @@ router.get('/add',  (req, res) =>{
 
 router.post('/add',  upload.single('imageupload'), (req, res) =>{
     const newNews = req.body;
-
-    res.send(req.file);
+    console.log(req.file);
+    res.send(req.body);
 })
 
 // Delete - remove a news article

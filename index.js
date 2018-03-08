@@ -34,13 +34,13 @@ app.set('views', './views');
 app.use(middleware.requestLogger);
 
 // Parse URL encoded data application/www
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Parse JSON data
 app.use(bodyParser.json());
 
 // for parsing multipart/form-data
-app.use(upload.array());
+// app.use(upload.array());
 
 // enable loading of static files
 app.use(express.static(__dirname + '/public'));
