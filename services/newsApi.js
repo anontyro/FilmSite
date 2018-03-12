@@ -16,6 +16,17 @@ module.exports ={
                 }
             });
     },
+    getSpecificNews: (slug, callback) =>{
+        News.find({slug: slug})
+            .exec((err, news) =>{
+                if(err){
+                    console.log(err);
+                    callback(err);
+                } else{
+                    callback(news);
+                }
+            });
+    },
     addUpdateNews: (query, newNews, callback) =>{
         News.findOneAndUpdate(query, newNews, {upsert: true}, (err, body) =>{
             if(err){
@@ -26,4 +37,5 @@ module.exports ={
             }
         });
     },
+
 }

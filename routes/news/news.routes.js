@@ -122,7 +122,13 @@ router.post('/add', checkSignIn, upload.single('imageupload'), (req, res) =>{
 router.get('/:id', (req, res) =>{
     const newsId = req.params.id;
     const newsInfo = req.query.info;
-    res.send('News with Slug: '+newsId + ', additional info: ' +newsInfo);
+
+    newsApi.getSpecificNews(newsId, (news) =>{
+        console.log(news);
+        res.render('./news/news_detail',{
+            newsContent: news[0]
+        })
+    })
 });
 
 module.exports = router;
