@@ -4,3 +4,9 @@
 .news-add-form {
   width: 70%;
   margin: auto; }
+
+.news-draft {
+  padding-top: 5%; }
+
+#editor-container {
+  margin-bottom: 20px; }

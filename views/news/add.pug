@@ -11,18 +11,26 @@ block body
             div.form-group
                 label(for = 'title') Title
                 input.form-control#newsTitle(name = 'title', placeholder="Some great news")
-            div.form-group
-                label(for = 'publishDate') Publish Date
-                input.form-control#newsPublishDate(type="date", name = 'publishDate', value = new Date(Date.now()).toLocaleString())
-            div.form-check
-                input.form-check-input#newsDraft(name = 'draft', type="checkbox", value="draft", checked)
-                label.form-check-label(for = 'draft') Draft                
+            div.row
+                div.form-group.col
+                    label(for = 'publishDate') Publish Date
+                    input.form-control#newsPublishDate(type="date", name = 'publishDate', value = new Date(Date.now()).toLocaleString())
+                div.form-check.col.news-draft
+                    input.form-check-input#newsDraft(name = 'draft', type="checkbox", value="draft", checked)
+                    label.form-check-label(for = 'draft') Draft                
             div.form-group
                 label(for = 'tags') Tags
                 input.form-control#newsTags(name = 'tags', placeholder="news; information; awesome")
-            div.form-group
-                label(for = 'coverimg') Cover Image
-                input.form-control#newsTitle(type='file', name='imageupload')      
+            div.row
+                div.form-group.col
+                    label(for = 'coverimgselect') Select Cover Image
+                    select.form-control(name = 'selectFile')
+                        option(value = '') -- Upload --
+                        each img in imgFileList
+                            option(value = img) #{img}
+                div.form-group.col
+                    label(for = 'coverimg') Cover Image
+                    input.form-control#newsTitle(type='file', name='imageupload')   
             label(for = 'newsBody') News Body
             div#editor-container
 
