@@ -130,7 +130,7 @@ router.get('/:id', (req,res) =>{
 
 // user review post from the film
 // needs to be reconsidered and refactored
-router.post('/:id', (req, res) =>{
+router.post('/:id', checkSignIn, (req, res) =>{
     const filmId = req.params.id;
     const review = req.body;
     const update = req.query.type;

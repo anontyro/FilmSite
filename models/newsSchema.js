@@ -6,14 +6,14 @@
 const mongoose = require('mongoose');
 
 const newsSchema = mongoose.Schema({
-    title: String,
-    publishDate: Date,
-    draft: Boolean,
-    author: String,
-    body: String,
-    tags: Array,
-    slug: String,
-    coverImg: String
+    title: {type: String, required: true},
+    publishDate: {type: Date, required: true},
+    draft: {type: Boolean},
+    author: {type: String, required: true},
+    body: {type: String, required: true},
+    tags: {type: Array},
+    slug: {type: String, required: true, unique: true, dropDups: true},
+    coverImg: {type: String, required: true}
 });
 
 const news = mongoose.model('News', newsSchema);

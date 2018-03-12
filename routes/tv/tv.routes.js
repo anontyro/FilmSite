@@ -77,7 +77,7 @@ router.get('/:id', (req, res) =>{
  * exists then update else create a new one.
  * After complete the page will redirect back to the film detail page
  */
-router.post('/:id', (req, res) => {
+router.post('/:id', checkSignIn, (req, res) => {
     const tvId = req.params.id;
     const review = req.body;
     // const update = req.query.type;

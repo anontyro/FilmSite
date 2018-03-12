@@ -34,10 +34,18 @@ router.get('/', (req, res) =>{
         });
     })
 });
+
+router.get('/newsList/:username', (req, res) =>{
+    const username = req.params.username;
+    News.find({author: username}).exec((err, response) =>{
+        res.json(response);
+    });
+});
+
 // Add new - add a new news article
 // Update - update a news article
 //both can be the same route
-router.get('/add',  (req, res) =>{
+router.get('/add', checkSignIn, (req, res) =>{
     fs.readdir('public/' + newsCoverImgDir, (err, fileList) =>{
         if(err){
             console.log(err);
@@ -53,7 +61,7 @@ router.get('/add',  (req, res) =>{
 /**
  * 
  */
-router.post('/add', upload.single('imageupload'), (req, res) =>{
+router.post('/add', checkSignIn, upload.single('imageupload'), (req, res) =>{
     const newNews = req.body;
     let imgLink = newsCoverImgDir;
     if(req.body.title.length < 5 || req.body.newsBody.length < 50 ){
@@ -71,18 +79,50 @@ router.post('/add', upload.single('imageupload'), (req, res) =>{
         imgLink += 'default.jpg';
     }
 
+    let newsSlug = req.body.title.replace(/ /g, '-');
+    let rand = Date.now().toString();
+    rand = rand.substring(rand.length-3, rand.length);
+    newsSlug += '-'+rand;
+
     const addNewsSchema = {
         title: req.body.title,
-
+        publishDate: req.body.publishDate,
+        draft: req.body.draft? true : false,
+        author: req.session.user.username,
+        body: req.body.newsBody,
+        tags: req.body.tags.length > 0? req.body.tags.split(';') : [],
+        coverImg: imgLink,
+        slug:  newsSlug
     }
 
-    console.log(req.file);
-    console.log('empty body length:' + req.body.newsBody.length);
-    res.send(req.body);
+    const query = {
+        author: req.session.user.username,
+        slug: newsSlug
+    }
+
+    News.findOneAndUpdate(query, addNewsSchema, {upsert: true}, (err, body)=>{
+        if(err){
+            console.log(err);
+            res.send(err);
+        } else{
+            res.redirect('/news/'+newsSlug + '?info=created');
+        }
+    });
+
+    // console.log(req.file);
+    // console.log(req.body);
+    // console.log('empty body length:' + req.body.newsBody.length);
+    // res.send(addNewsSchema);
 })
 
 // Delete - remove a news article
 
+//specific news page
 
+router.get('/:id', (req, res) =>{
+    const newsId = req.params.id;
+    const newsInfo = req.query.info;
+    res.send('News with Slug: '+newsId + ', additional info: ' +newsInfo);
+});
 
 module.exports = router;
