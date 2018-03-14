@@ -2,9 +2,11 @@
 .main-news-container{
     width: 80%;
     margin: auto;
+    margin-top: 20px;
 }
 
 .news-post-container{
+    margin-bottom: 20px;
     .news-post-header{
         display: flex;
         justify-content: space-between;
@@ -20,7 +22,10 @@
                 width: 150px;
                 height: 150px;
             }
-
+        }
+        .news-post-blurb{
+            width: 60%;
+            margin-left: 30px;
         }
     }
 }
