@@ -1,0 +1,23 @@
+.main-news-container {
+  width: 80%;
+  margin: auto; }
+
+.news-post-container .news-post-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .news-post-container .news-post-header .news-post-date {
+    padding-top: 10px; }
+
+.news-post-container .news-post-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .news-post-container .news-post-body .news-post-img .img-news {
+    width: 150px;
+    height: 150px; }

@@ -1,5 +1,21 @@
 extends  ../layout
-
+block head
+    link(href='/css/new/index-news.css', rel='stylesheet')
+    link(href='/quill/quill.snow.css', rel='stylesheet')
 block body
     div.main-news-container
-        p main news index
+        for news in newsList
+            div.news-post-container
+                div.news-post-header
+                    div.news-post-title
+                        h3.news-title #{news.title}
+                    div.news-post-date
+                        span.news-date #{moment(news.publishDate).format("ddd MMM YY")}
+                div.news-post-body
+                    div.news-post-img
+                        img.img-news(src=news.coverImg)
+                    div.news-post-blurb#quillContainer
+
+block end
+    script(src="/quill/quill.js")
+    script(src="/js/shared/quill-display.js")

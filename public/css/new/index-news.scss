@@ -1,0 +1,26 @@
+
+.main-news-container{
+    width: 80%;
+    margin: auto;
+}
+
+.news-post-container{
+    .news-post-header{
+        display: flex;
+        justify-content: space-between;
+        .news-post-date{
+            padding-top: 10px;
+        }
+    }
+    .news-post-body{
+        display: flex;
+        flex-wrap: wrap;
+        .news-post-img{
+            .img-news{
+                width: 150px;
+                height: 150px;
+            }
+
+        }
+    }
+}

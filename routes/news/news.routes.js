@@ -28,6 +28,7 @@ const upload = getFile('public/' + newsCoverImgDir);
 router.get('/', (req, res) =>{
 
     newsApi.getLatestNews(10, (output) =>{
+        console.log(output);
         res.render('./news/index', {
             title: 'News Home',
             newsList: output
