@@ -1,4 +1,15 @@
 extends  ../layout
 
+block head
+    link(href='/quill/quill.snow.css', rel='stylesheet')    
+    link(href='/css/new/detail-news.css', rel='stylesheet')    
+
 block body
+    - const post = newsContent.body.substr(1, newsContent.body.length);
     p=newsContent.title
+    input.blog-content(type="hidden" value=newsContent.body)
+    div#quillContainer
+
+block end
+    script(src="/quill/quill.js")
+    script(src="/js/shared/quill-display.js")

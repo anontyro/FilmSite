@@ -2,8 +2,7 @@ extends  ../layout
 block head
     link(href='/css/new/index-news.css', rel='stylesheet')
     link(href='/quill/quill.snow.css', rel='stylesheet')
-    script(src="/quill/quill.js")
-    script(src="/js/shared/quill-display.js")
+
 block body
     div.main-news-container
         for news in newsList
@@ -20,6 +19,7 @@ block body
                     div.news-post-blurb
                         p #{post.ops[0].insert}...
                 div.news-btn-link
-                    button.btn.btn-outline-dark() More
+                    button.btn.btn-outline-dark(onclick=`getMoreNews("${news.slug}")`) More
 
 block end
+    script(src="/js/news/index-news.js")

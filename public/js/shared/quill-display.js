@@ -1,13 +1,33 @@
-// const quill = new Quill('#quillContainer', {
-//     modules: {
-//         toolbar: [
-//             ['bold', 'italic'],
-//             ['link', 'blockquote', 'code-block', 'image'],
-//             [{ list: 'ordered' }, { list: 'bullet' }]
-//         ]
-//     },
-//     theme: 'snow'
-// });
+
+let quill;
+
+window.onload =() =>{
+    quill = createQuill();
+    const content = JSON.parse(document.querySelector(".blog-content").value);
+    quill.setContents(content);
+    quill.disable();
+    console.log(content);
+};
+
+const createQuill = () =>{
+    let output = new Quill('#quillContainer', {
+        "modules": {
+            "toolbar": false
+        },
+        theme: 'snow'
+    });
+    return output;
+}
+
+
+
+const setContent = (delta) =>{
+    let myDelta = delta;
+    console.log(myDelta);
+    quill.setContents(myDelta);
+}
+
+
 
 // const quillArr = []
 
