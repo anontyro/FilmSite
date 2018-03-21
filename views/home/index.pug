@@ -1,8 +1,6 @@
 extends ../layout
 block head
     link(href='/css/home/landing-page.css', rel='stylesheet')   
-    script(src="/js/film/film-strip.js")     
-    script(src="/js/home/landing-page.js")
 
 block body
     div.landing-header
@@ -38,7 +36,12 @@ block body
                     ul.main-media-list
                         for show in tvList
                             li: a(href='/tv/' + show.id) #[i.fal.fa-tv-retro] #{show.name.substring(0,40)}#{show.name.length > 40? '...' : ''}
-    
-    if user
-        h3=user.username
+
+block end
+    script(src="/js/film/film-strip.js")     
+    script(src="/js/home/landing-page.js")
+
+
+    //- if user
+    //-     h3=user.username
     //- img(src = "/img/myPic.jpg")

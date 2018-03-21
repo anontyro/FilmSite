@@ -6,9 +6,17 @@ block head
 
 block body
     - const post = newsContent.body.substr(1, newsContent.body.length);
-    p=newsContent.title
     input.blog-content(type="hidden" value=newsContent.body)
-    div#quillContainer
+    div.news-detail-body
+        div.news-header
+            div.news-title
+                h3.main-title #{newsContent.title}
+            div.news-sub-header
+                div.news-date
+                    p #{moment(newsContent.publishDate).format("ddd MMM YYYY")}
+                div.news-author
+                    p #{newsContent.author}
+        div#quillContainer
 
 block end
     script(src="/quill/quill.js")

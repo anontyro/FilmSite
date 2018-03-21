@@ -1,3 +1,27 @@
+.news-detail-body {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.news-header{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .news-title{
+
+    }
+    .news-sub-header{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 12pt;
+        margin-top: 10px;
+    }
+}
+
 #quillContainer{
     border: none;
 }
+
