@@ -17,6 +17,24 @@
   .latest-carousel .film-carousel-container {
     cursor: pointer; }
 
+.latest-news-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .latest-news-container .news-container {
+    width: 25%; }
+  .latest-news-container .news-container:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 4px 5px 50px -10px red;
+    box-shadow: 4px 5px 50px -10px red; }
+
 .latest-lists-container .latest-lists {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -25,7 +43,9 @@
   margin: auto;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  margin-top: 50px; }
+  margin-top: 10px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
   .latest-lists-container .latest-lists p.page-sub-headings {
     text-align: center;
     margin-bottom: 0px; }
@@ -43,3 +63,13 @@
     width: 50%; }
   .latest-lists-container .latest-lists .tv-list {
     width: 50%; }
+
+@media only screen and (max-width: 420px) {
+  .latest-carousel {
+    height: unset; } }
+
+@media only screen and (max-width: 768px) {
+  .film-list {
+    width: 100% !important; }
+  .tv-list {
+    width: 100% !important; } }

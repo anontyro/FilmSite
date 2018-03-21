@@ -19,13 +19,31 @@
         cursor: pointer;
     }
 }
+
+.latest-news-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    margin: auto;
+    justify-content: space-between;
+    .news-container{
+        width: 25%;
+
+    }
+    .news-container:hover{
+        cursor: pointer;
+        box-shadow: 4px 5px 50px -10px red;
+    }
+}
+
 .latest-lists-container{
     .latest-lists {
         display: flex;
         width: 80%;
         margin: auto;
         justify-content: space-around;
-        margin-top: 50px;
+        margin-top: 10px;
+        flex-wrap: wrap;
         p.page-sub-headings{
             text-align: center;
             margin-bottom: 0px
@@ -52,3 +70,17 @@
     }
 }
 
+@media only screen and (max-width: 420px){
+    .latest-carousel{
+        height: unset;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .film-list{
+        width: 100% !important;
+    }
+    .tv-list{
+        width: 100% !important;
+    }
+}

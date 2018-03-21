@@ -5,10 +5,12 @@
 const mongoose = require('mongoose');
 
 const personSchema = mongoose.Schema({
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String
+    firstname: {type: String, required: true},
+    lastname: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
+    verified: {type: Boolean},
+    verificationLink: {type: String},
 });
 
 const person = mongoose.model('Person', personSchema);

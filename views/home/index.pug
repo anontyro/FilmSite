@@ -1,6 +1,4 @@
 extends ../layout
-block head
-    link(href='/css/home/landing-page.css', rel='stylesheet')   
 
 block body
     div.landing-header
@@ -21,6 +19,17 @@ block body
                     div.film-carousel-text(style="display:none;")
                         p #{film.overview.slice(0,50)}...
 
+        div.latest-news-container
+            for news in newsList
+                - const post = JSON.parse(news.body);
+
+                div.page-container.news-container(onclick=`window.location.replace('news/'+'${news.slug}')`)
+                    div.news-post-title
+                        p.page-sub-headings.post-title #{news.title}
+                    div.news-post-body
+                        p.post-body #{post.ops[0].insert.length > 75? post.ops[0].insert.substr(0,75) : post.ops[0] }...
+                    
+
         div.latest-lists-container
             div.latest-lists
                 div.film-list
@@ -39,7 +48,6 @@ block body
 
 block end
     script(src="/js/film/film-strip.js")     
-    script(src="/js/home/landing-page.js")
 
 
     //- if user
