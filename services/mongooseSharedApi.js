@@ -31,6 +31,17 @@ module.exports ={
                     }
                 });
     },
+    getFilmReviewsByUsername : (Username, callback) =>{
+        Review.FilmReview.find({username: Username})
+            .exec((err, response) =>{
+            if(err){
+                console.log(err);
+                callback(err);
+            } else{
+                callback(response);
+            }
+        });
+    },
     getTvReviewsByTvId: (TvId, callback) =>{
         Review.TvReview.find({tvId: TvId})
                 .exec( (err, reviews) => {
@@ -42,4 +53,15 @@ module.exports ={
                     }
                 });
     },
+    getTvReviewsByUsername: (Username, callback) =>{
+        Review.TvReview.find({username: Username})
+            .exec( (err, response) =>{
+            if(err){
+                console.log(err);
+                callback(err);
+            } else{
+                callback(response);
+            }
+        });
+    }
 }

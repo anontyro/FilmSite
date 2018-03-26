@@ -10,6 +10,9 @@ const mongoose = require('mongoose');
 const User = require('../models/personSchema').Person;
 const checkSignIn = require('../shared/index.middle').checkSignIn;
 
+// mongoose methods to connect to my database
+const mongoApi = require('../services/mongooseSharedApi')
+
 // Database call classes
 const movieApi = require('../services/movieDbApi');
 const tvApi = require('../services/movieDbTvApi');
@@ -159,7 +162,9 @@ router.get('/logout', (req,res) =>{
  * a page that requires the user to login first and have an active session to contiune
  */
 router.get('/user_area', checkSignIn, (req, res) =>{
-    res.send(req.session.user + ' Has signed in correctly');
+    res.render('./user/user_area', {
+
+    })
 });
 
 
