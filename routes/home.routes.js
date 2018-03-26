@@ -165,8 +165,6 @@ router.get('/user_area', checkSignIn, (req, res) =>{
     let Username = req.session.user.username;
     mongoApi.getFilmReviewsByUsername(Username, (filmReviewList) =>{
         mongoApi.getTvReviewsByUsername(Username, (tvReviewList) =>{
-            console.log(filmReviewList);
-            console.log(tvReviewList);
             res.render('./user/user_area', {
                 filmList: filmReviewList,
                 tvList: tvReviewList

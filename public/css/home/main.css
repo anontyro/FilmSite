@@ -57,3 +57,33 @@ body {
   border: none;
   padding-left: 10px;
   width: 100px; }
+
+.latest-lists-container .latest-lists {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  margin: auto;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-top: 10px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  .latest-lists-container .latest-lists p.page-sub-headings {
+    text-align: center;
+    margin-bottom: 0px; }
+  .latest-lists-container .latest-lists ul.main-media-list {
+    list-style: none; }
+    .latest-lists-container .latest-lists ul.main-media-list li {
+      padding: 2px; }
+  .latest-lists-container .latest-lists .film-list {
+    width: 50%; }
+  .latest-lists-container .latest-lists .tv-list {
+    width: 50%; }
+
+.list-container-header {
+  margin: 20px;
+  padding: 5px;
+  background-color: #343a40;
+  -webkit-box-shadow: 4px 2px 20px 0px black;
+  box-shadow: 4px 2px 20px 0px black; }

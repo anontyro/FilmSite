@@ -1,8 +1,34 @@
 extends ../layout
 
 block head
-    link(href='/css/user/user-area.css')
+    link(href='/css/user/user-area.css', rel='stylesheet')
 
 block body
+    -const sliceLen = 35; 
     div.main-user-area-container
-        h3 User area #{user.username}
+        div.user-area-header
+            h3.user-title #{user.username} area
+
+        div.latest-lists-container.user-area-body
+            div.latest-lists
+                div.film-list
+                    div.list-container-header
+                        p.page-sub-headings Film Reviews
+                    for film in filmList
+                        div.review-container
+                            div.review-header
+                                p.review-media-title.page-sub-headings #{film.filmTitle}
+                                p.review-title=film.title
+                            div.review-blurb
+                                p #{film.review.length > sliceLen? film.review.substr(0,sliceLen) + ".." : film.review}
+
+                div.tv-list
+                    div.list-container-header
+                        p.page-sub-headings Tv Reviews
+                    for tv in tvList
+                        div.review-container
+                            div.review-header
+                                p.review-media-title.page-sub-headings #{tv.tvTitle}
+                                p.review-title=tv.title
+                            div.review-blurb
+                                p #{tv.review.length > sliceLen? tv.review.substr(0,sliceLen) + ".." : tv.review}

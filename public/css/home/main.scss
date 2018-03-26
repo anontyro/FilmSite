@@ -45,6 +45,8 @@ body{
     color: lighten($color: (gray), $amount: 20)
 }
 
+
+
 .page-container{
     padding: 20px;
     border: 1px solid #dbdbdb;
@@ -61,4 +63,39 @@ body{
         padding-left: 10px;
         width: 100px;
     }
+}
+
+.latest-lists-container{
+    .latest-lists {
+        display: flex;
+        width: 80%;
+        margin: auto;
+        justify-content: space-around;
+        margin-top: 10px;
+        flex-wrap: wrap;
+        p.page-sub-headings{
+            text-align: center;
+            margin-bottom: 0px
+        }
+
+        ul.main-media-list{
+            list-style: none;
+            li{
+                padding: 2px;
+            }
+        }
+        .film-list{
+            width: 50%;
+        }
+        .tv-list{
+            width: 50%;
+        }
+    }
+}
+
+.list-container-header{
+    margin: 20px;
+    padding: 5px;
+    background-color: #343a40;
+    box-shadow: 4px 2px 20px 0px black;
 }
