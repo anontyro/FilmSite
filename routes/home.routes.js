@@ -162,8 +162,16 @@ router.get('/logout', (req,res) =>{
  * a page that requires the user to login first and have an active session to contiune
  */
 router.get('/user_area', checkSignIn, (req, res) =>{
-    res.render('./user/user_area', {
-
+    let Username = req.session.user.username;
+    mongoApi.getFilmReviewsByUsername(Username, (filmReviewList) =>{
+        mongoApi.getTvReviewsByUsername(Username, (tvReviewList) =>{
+            console.log(filmReviewList);
+            console.log(tvReviewList);
+            res.render('./user/user_area', {
+                filmList: filmReviewList,
+                tvList: tvReviewList
+            })
+        })
     })
 });
 

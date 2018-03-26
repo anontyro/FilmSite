@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
  * USER FILM REVIEW
  */
 const filmReviewSchema = mongoose.Schema({
-    username: String,    
+    username: {type: String},    
     filmId: Number,
     filmTitle: String,
     title: String,
@@ -19,7 +19,7 @@ const filmReviewSchema = mongoose.Schema({
  * TV SHOW REVIEW
  */
 const tvReviewSchema = mongoose.Schema({
-    username: String,
+    username: {type: String},
     tvId: Number,
     tvTitle: String,
     title: String,

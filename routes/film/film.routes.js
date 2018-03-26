@@ -57,7 +57,6 @@ router.get('/search', (req,res) =>{
  */
 router.get('/reviewList/:username', (req, res) =>{
     const Username = req.params.username;
-    console.log("username is:" + Username);
     mongoApi.getFilmReviewsByUsername(Username, (reviewList) =>{
         res.json(reviewList);
     })
