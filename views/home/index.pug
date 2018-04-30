@@ -23,7 +23,7 @@ block body
             for news in newsList
                 - const post = JSON.parse(news.body);
 
-                div.page-container.news-container(onclick=`window.location.replace('news/'+'${news.slug}')`)
+                div.page-container.news-container.col-md-4(onclick=`window.location.replace('news/'+'${news.slug}')`)
                     div.news-post-title
                         p.page-sub-headings.post-title #{news.title}
                     div.news-post-body

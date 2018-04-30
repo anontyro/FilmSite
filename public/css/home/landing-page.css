@@ -28,8 +28,6 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between; }
-  .latest-news-container .news-container {
-    width: 25%; }
   .latest-news-container .news-container:hover {
     cursor: pointer;
     -webkit-box-shadow: 4px 5px 50px -10px red;
